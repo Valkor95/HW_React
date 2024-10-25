@@ -1,5 +1,7 @@
 import {Component} from 'react';
 import {Button, Col, Container, Image, Row} from "react-bootstrap";
+import Results from "./Components/Results.jsx";
+import EmojiVotes from "./Components/EmojiVotes.jsx";
 
 
 class App extends Component {
@@ -58,11 +60,18 @@ class App extends Component {
                 </Row>
                 <Row className='d-flex justify-content-center column-gap-3 mb-4'>
                     {Object.keys(votes).map((emoji, index) => (
-                        <Col key={index} xs="auto" className='d-flex align-items-center flex-column row-gap-2'>
-                            <Image src={`../publick/img/${emojiMap[emoji]}`} rounded alt={emoji} style={{width: '50px', height: '50px'}}/>
-                            <p>Votes: {votes[emoji]}</p>
-                            <Button variant='success' onClick={() => this.handleVote(emoji)}>Vote</Button>
-                        </Col>
+                        <EmojiVotes
+                            key={index}
+                            emojiMap={emojiMap}
+                            emoji={emoji}
+                            votes={votes[emoji]}
+                            onVote={this.handleVote}
+                        />
+                        // <Col key={index} xs="auto" className='d-flex align-items-center flex-column row-gap-2'>
+                        //     <Image src={`../publick/img/${emojiMap[emoji]}`} rounded alt={emoji} style={{width: '50px', height: '50px'}}/>
+                        //     <p>Votes: {votes[emoji]}</p>
+                        //     <Button variant='success' onClick={() => this.handleVote(emoji)}>Vote</Button>
+                        // </Col>
                     ))}
 
 
@@ -74,15 +83,11 @@ class App extends Component {
                     </Col>
                 </Row>
 
-                {showResults && (
-                    <Row className='d-flex justify-content-center mb-3'>
-                        <Col xs='auto' className='d-flex align-items-center flex-column row-gap-2'>
-                            <h3>Результати голосування:</h3>
-                            <Image src={`../publick/img/${emojiMap[this.getWinnerEmoji()]}`} rounded alt='winner' style={{width: '50px', height: '50px'}}/>
-                            <p>Переможець: {this.getWinnerEmoji()}</p>
-                        </Col>
-                    </Row>
-                )}
+                <Results
+                    showResults={showResults}
+                    emojiMap={emojiMap}
+                    winner={this.getWinnerEmoji()}
+                />
             </Container>
         );
     }
