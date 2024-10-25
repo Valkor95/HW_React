@@ -78,7 +78,7 @@ class App extends Component {
                     <Row className='d-flex justify-content-center mb-3'>
                         <Col xs='auto'>
                             <h3>Результати голосування:</h3>
-                            <Image src={`../public/img/${emojiMap[this.getWinnerEmoji()]}`} rounded alt='winner' style={{width: '50px', height: '50px'}}/>
+                            <Image src={`../publick/img/${emojiMap[this.getWinnerEmoji()]}`} rounded alt='winner' style={{width: '50px', height: '50px'}}/>
                             <p>Переможець: {this.getWinnerEmoji()}</p>
                         </Col>
                     </Row>
