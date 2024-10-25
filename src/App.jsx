@@ -76,7 +76,7 @@ class App extends Component {
 
                 {showResults && (
                     <Row className='d-flex justify-content-center mb-3'>
-                        <Col xs='auto'>
+                        <Col xs='auto' className='d-flex align-items-center flex-column row-gap-2'>
                             <h3>Результати голосування:</h3>
                             <Image src={`../publick/img/${emojiMap[this.getWinnerEmoji()]}`} rounded alt='winner' style={{width: '50px', height: '50px'}}/>
                             <p>Переможець: {this.getWinnerEmoji()}</p>
