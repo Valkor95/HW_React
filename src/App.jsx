@@ -3,6 +3,16 @@ import {Button, Col, Container, Row} from "react-bootstrap";
 import Results from "./Components/Results.jsx";
 import EmojiVotes from "./Components/EmojiVotes.jsx";
 
+const candidates = [
+    {
+        key: 'angry',
+        localStorageKey: 'angryVotes',
+        count: 0,
+        url: 'angry.png',
+    }
+];
+
+// localStorage.setItem('votes', )
 
 class App extends Component {
     constructor(props) {
@@ -15,8 +25,27 @@ class App extends Component {
                 smile: JSON.parse(localStorage.getItem('smileVotes'))|| 0,
                 thinking: JSON.parse(localStorage.getItem('thinkingVotes'))|| 0,
             },
-            showResults: false
+            showResults: false,
+
         };
+        this.emojiMap = {
+            angry: 'angry.png',
+            love: 'love.png',
+            sad: 'sad.png',
+            smile: 'smile.png',
+            thinking: 'thinking.png'
+        };
+    }
+
+    componentDidMount() {
+        this.candidates = [
+            {
+                key: 'angry',
+                localStorageKey: 'angryVotes',
+                count: 0,
+                url: 'angry.png',
+            }
+        ];
     }
 
     handleVote = (emoji) => {
@@ -28,6 +57,7 @@ class App extends Component {
             localStorage.setItem(`${emoji}Votes`, JSON.stringify(newVotes[emoji]));
             return {votes: newVotes};
         })
+
     }
 
     handleShowResults = () => {
@@ -43,13 +73,7 @@ class App extends Component {
 
     render() {
         const {votes, showResults} = this.state;
-        const emojiMap = {
-            angry: 'angry.png',
-            love: 'love.png',
-            sad: 'sad.png',
-            smile: 'smile.png',
-            thinking: 'thinking.png'
-        };
+
 
         return (
             <Container fluid className='m-5' >
@@ -59,10 +83,10 @@ class App extends Component {
                     </Col>
                 </Row>
                 <Row className='d-flex justify-content-center column-gap-3 mb-4'>
-                    {Object.keys(votes).map((emoji, index) => (
+                    {candidates.map((emoji, index) => (
                         <EmojiVotes
                             key={index}
-                            emojiMap={emojiMap}
+                            emojiMap={this.emojiMap}
                             emoji={emoji}
                             votes={votes[emoji]}
                             onVote={this.handleVote}
@@ -84,7 +108,7 @@ class App extends Component {
                 </Row>
 
                 {showResults && (<Results
-                    emojiMap={emojiMap}
+                    emojiMap={this.emojiMap}
                     winner={this.getWinnerEmoji()}
                 />)}
             </Container>
