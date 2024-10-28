@@ -1,5 +1,5 @@
 import {Component} from 'react';
-import {Button, Col, Container, Image, Row} from "react-bootstrap";
+import {Button, Col, Container, Row} from "react-bootstrap";
 import Results from "./Components/Results.jsx";
 import EmojiVotes from "./Components/EmojiVotes.jsx";
 
@@ -83,11 +83,10 @@ class App extends Component {
                     </Col>
                 </Row>
 
-                <Results
-                    showResults={showResults}
+                {showResults && (<Results
                     emojiMap={emojiMap}
                     winner={this.getWinnerEmoji()}
-                />
+                />)}
             </Container>
         );
     }
