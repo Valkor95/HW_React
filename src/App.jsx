@@ -9,10 +9,33 @@ const candidates = [
         localStorageKey: 'angryVotes',
         count: 0,
         url: 'angry.png',
-    }
+    },
+    {
+        key: 'love',
+        localStorageKey: 'loveVotes',
+        count: 0,
+        url: 'love.png',
+    },
+    {
+        key: 'sad',
+        localStorageKey: 'sadVotes',
+        count: 0,
+        url: 'sad.png',
+    },
+    {
+        key: 'smile',
+        localStorageKey: 'smileVotes',
+        count: 0,
+        url: 'smile.png',
+    },
+    {
+        key: 'thinking',
+        localStorageKey: 'thinkingVotes',
+        count: 0,
+        url: 'thinking.png',
+    },
 ];
 
-// localStorage.setItem('votes', )
 
 class App extends Component {
     constructor(props) {
@@ -44,7 +67,32 @@ class App extends Component {
                 localStorageKey: 'angryVotes',
                 count: 0,
                 url: 'angry.png',
-            }
+            },
+            {
+                key: 'love',
+                localStorageKey: 'loveVotes',
+                count: 0,
+                url: 'love.png',
+            },
+            {
+                key: 'sad',
+                localStorageKey: 'sadVotes',
+                count: 0,
+                url: 'sad.png',
+            },
+            {
+                key: 'smile',
+                localStorageKey: 'smileVotes',
+                count: 0,
+                url: 'smile.png',
+            },
+            {
+                key: 'thinking',
+                localStorageKey: 'thinkingVotes',
+                count: 0,
+                url: 'thinking.png',
+            },
+
         ];
     }
 
