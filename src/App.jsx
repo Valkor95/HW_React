@@ -2,6 +2,7 @@ import {Component} from 'react';
 import {Button, Col, Container, Row} from "react-bootstrap";
 import Results from "./Components/Results.jsx";
 import EmojiVotes from "./Components/EmojiVotes.jsx";
+import ClearResult from "./Components/ClearResult.jsx";
 
 const candidates = [
     {
@@ -114,9 +115,12 @@ class App extends Component {
                 </Row>
 
                 {showResults &&
-                    (<Results
-                    winner={this.getWinnerEmoji()}
-                />)}
+                    (<>
+                        <Results
+                            winner={this.getWinnerEmoji()}/>
+                        <ClearResult onClear={this.handleClearResult}/>
+                    </>
+                    )}
             </Container>
         );
     }
