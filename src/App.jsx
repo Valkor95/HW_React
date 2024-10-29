@@ -41,69 +41,26 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            votes: {
-                angry: JSON.parse(localStorage.getItem('angryVotes'))|| 0,
-                love: JSON.parse(localStorage.getItem('loveVotes'))|| 0,
-                sad: JSON.parse(localStorage.getItem('sadVotes'))|| 0,
-                smile: JSON.parse(localStorage.getItem('smileVotes'))|| 0,
-                thinking: JSON.parse(localStorage.getItem('thinkingVotes'))|| 0,
-            },
+            votes: candidates.map(candidate => ({
+                ...candidate,
+                count: JSON.parse(localStorage.getItem(candidate.localStorageKey)) || candidate.count
+            })),
             showResults: false,
 
         };
-        this.emojiMap = {
-            angry: 'angry.png',
-            love: 'love.png',
-            sad: 'sad.png',
-            smile: 'smile.png',
-            thinking: 'thinking.png'
-        };
     }
 
-    componentDidMount() {
-        this.candidates = [
-            {
-                key: 'angry',
-                localStorageKey: 'angryVotes',
-                count: 0,
-                url: 'angry.png',
-            },
-            {
-                key: 'love',
-                localStorageKey: 'loveVotes',
-                count: 0,
-                url: 'love.png',
-            },
-            {
-                key: 'sad',
-                localStorageKey: 'sadVotes',
-                count: 0,
-                url: 'sad.png',
-            },
-            {
-                key: 'smile',
-                localStorageKey: 'smileVotes',
-                count: 0,
-                url: 'smile.png',
-            },
-            {
-                key: 'thinking',
-                localStorageKey: 'thinkingVotes',
-                count: 0,
-                url: 'thinking.png',
-            },
-
-        ];
-    }
-
-    handleVote = (emoji) => {
+    handleVote = (emojiKey) => {
         this.setState(prevstate => {
-            const newVotes = {
-                ...prevstate.votes,
-                [emoji]: prevstate.votes[emoji] + 1
-            };
-            localStorage.setItem(`${emoji}Votes`, JSON.stringify(newVotes[emoji]));
-            return {votes: newVotes};
+            const updatedVotes = prevstate.votes.map(emoji => {
+                if(emoji.key === emojiKey){
+                    const newCount = emoji.count + 1;
+                    localStorage.setItem(emoji.localStorageKey, JSON.stringify(newCount));
+                    return {...emoji, count: newCount};
+                }
+                return emoji;
+            });
+        return {votes: updatedVotes};
         })
 
     }
@@ -114,9 +71,9 @@ class App extends Component {
 
     getWinnerEmoji = () => {
         const {votes} = this.state;
-        const maxVotes = Math.max(...Object.values(votes));
-        const winner = Object.keys(votes).find(key => votes[key] === maxVotes);
-        return winner;
+        const maxVotes = Math.max(...votes.map(emoji => emoji.count));
+        const winner = votes.find(emoji => emoji.count === maxVotes);
+        return winner ? winner.key : null;
     }
 
     render() {
@@ -131,19 +88,12 @@ class App extends Component {
                     </Col>
                 </Row>
                 <Row className='d-flex justify-content-center column-gap-3 mb-4'>
-                    {candidates.map((emoji, index) => (
+                    {votes.map((emoji, index) => (
                         <EmojiVotes
                             key={index}
-                            emojiMap={this.emojiMap}
                             emoji={emoji}
-                            votes={votes[emoji]}
-                            onVote={this.handleVote}
+                            onVote={() => this.handleVote(emoji.key)}
                         />
-                        // <Col key={index} xs="auto" className='d-flex align-items-center flex-column row-gap-2'>
-                        //     <Image src={`../publick/img/${emojiMap[emoji]}`} rounded alt={emoji} style={{width: '50px', height: '50px'}}/>
-                        //     <p>Votes: {votes[emoji]}</p>
-                        //     <Button variant='success' onClick={() => this.handleVote(emoji)}>Vote</Button>
-                        // </Col>
                     ))}
 
 
@@ -155,8 +105,8 @@ class App extends Component {
                     </Col>
                 </Row>
 
-                {showResults && (<Results
-                    emojiMap={this.emojiMap}
+                {showResults &&
+                    (<Results
                     winner={this.getWinnerEmoji()}
                 />)}
             </Container>
