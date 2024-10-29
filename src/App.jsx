@@ -37,93 +37,43 @@ const candidates = [
     },
 ];
 
-
-class App extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            votes: candidates.map(candidate => ({
-                ...candidate,
-                count: JSON.parse(localStorage.getItem(candidate.localStorageKey)) || candidate.count
-            })),
-            showResults: false,
-
-        };
-    }
-
-    handleVote = (emojiKey) => {
-        this.setState(prevstate => {
-            const updatedVotes = prevstate.votes.map(emoji => {
-                if(emoji.key === emojiKey){
-                    const newCount = emoji.count + 1;
-                    localStorage.setItem(emoji.localStorageKey, JSON.stringify(newCount));
-                    return {...emoji, count: newCount};
-                }
-                return emoji;
-            });
-        return {votes: updatedVotes};
-        })
-
-    }
-
-    handleShowResults = () => {
-        this.setState({showResults: true});
-    }
-
-    handleClearResult = () => {
-        const clearedVotes = this.state.votes.map(emoji => {
-            localStorage.setItem(emoji.localStorageKey, JSON.stringify(0));
-            return {...emoji, count: 0};
-        });
-        this.setState({votes: clearedVotes, showResults: false})
-    }
-
-    getWinnerEmoji = () => {
-        const {votes} = this.state;
-        const maxVotes = Math.max(...votes.map(emoji => emoji.count));
-        const winner = votes.find(emoji => emoji.count === maxVotes);
-        return winner ? winner.key : null;
-    }
-
-    render() {
-        const {votes, showResults} = this.state;
+const App = () => {
 
 
-        return (
-            <Container fluid className='m-5' >
-                <Row className='d-flex justify-content-center mb-3'>
-                    <Col xs='auto'>
-                        <h3>Голосування за найкращий смайлик</h3>
-                    </Col>
-                </Row>
-                <Row className='d-flex justify-content-center column-gap-3 mb-4'>
-                    {votes.map((emoji, index) => (
-                        <EmojiVotes
-                            key={index}
-                            emoji={emoji}
-                            onVote={() => this.handleVote(emoji.key)}
-                        />
-                    ))}
+    return (
+        <Container fluid className='m-5' >
+            <Row className='d-flex justify-content-center mb-3'>
+                <Col xs='auto'>
+                    <h3>Голосування за найкращий смайлик</h3>
+                </Col>
+            </Row>
+            <Row className='d-flex justify-content-center column-gap-3 mb-4'>
+                {votes.map((emoji, index) => (
+                    <EmojiVotes
+                        key={index}
+                        emoji={emoji}
+                        onVote={() => this.handleVote(emoji.key)}
+                    />
+                ))}
 
 
-                </Row>
+            </Row>
 
-                <Row className='d-flex justify-content-center mb-3'>
-                    <Col xs='auto'>
-                        <Button variant='primary' onClick={this.handleShowResults}>Show results</Button>
-                    </Col>
-                </Row>
+            <Row className='d-flex justify-content-center mb-3'>
+                <Col xs='auto'>
+                    <Button variant='primary' onClick={this.handleShowResults}>Show results</Button>
+                </Col>
+            </Row>
 
-                {showResults &&
-                    (<>
+            {showResults &&
+                (<>
                         <Results
                             winner={this.getWinnerEmoji()}/>
                         <ClearResult onClear={this.handleClearResult}/>
                     </>
-                    )}
-            </Container>
-        );
-    }
-}
+                )}
+        </Container>
+    );
+};
 
 export default App;
