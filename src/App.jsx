@@ -69,6 +69,14 @@ class App extends Component {
         this.setState({showResults: true});
     }
 
+    handleClearResult = () => {
+        const clearedVotes = this.state.votes.map(emoji => {
+            localStorage.setItem(emoji.localStorageKey, JSON.stringify(0));
+            return {...emoji, count: 0};
+        });
+        this.setState({votes: clearedVotes, showResults: false})
+    }
+
     getWinnerEmoji = () => {
         const {votes} = this.state;
         const maxVotes = Math.max(...votes.map(emoji => emoji.count));
