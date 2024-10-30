@@ -1,8 +1,5 @@
-# React + Vite
+# ДЗ 26.1. Голосування за смайлик (function component)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+За допомогою функціональних компонентів, та хуків, зробити список смайликів та лічильник кліків по кожному.
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Приклад: Screenshot at 13-19-18.jpg

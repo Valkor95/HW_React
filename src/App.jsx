@@ -1,8 +1,8 @@
-import {Component} from 'react';
 import {Button, Col, Container, Row} from "react-bootstrap";
 import Results from "./Components/Results.jsx";
 import EmojiVotes from "./Components/EmojiVotes.jsx";
 import ClearResult from "./Components/ClearResult.jsx";
+import {useState} from "react";
 
 const candidates = [
     {
@@ -38,7 +38,27 @@ const candidates = [
 ];
 
 const App = () => {
+    const [votes, setVotes] = useState(
+        candidates.map(candidate => ({
+            ...candidate,
+            count: JSON.parse(localStorage.getItem(candidate.localStorageKey)) || candidate.count
+        }))
+    );
+    const [showResults, setShowResults] = useState(false);
 
+    const handleVote = (emojiKey) => {
+        setVotes(prevState =>
+            prevState.map(emoji => {emoji => {
+                if(emoji.key === emojiKey){
+                    const newCount = emoji.count + 1;
+                    localStorage.setItem(emoji.localStorage, JSON.stringify(newCount));
+                    return {...emoji, count: newCount};
+                }
+            }
+            return emoji
+            })
+        )
+    }
 
     return (
         <Container fluid className='m-5' >
@@ -52,11 +72,9 @@ const App = () => {
                     <EmojiVotes
                         key={index}
                         emoji={emoji}
-                        onVote={() => this.handleVote(emoji.key)}
+                        onVote={() => handleVote(emoji.key)}
                     />
                 ))}
-
-
             </Row>
 
             <Row className='d-flex justify-content-center mb-3'>
