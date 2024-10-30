@@ -71,8 +71,11 @@ const App = () => {
 
     const handleClearResult = () => {
         const clearedVotes = votes.map(emoji => {
-
+            localStorage.setItem(emoji.localStorageKey, JSON.stringify(0));
+            return {...emoji, count: 0};
         })
+        setVotes(clearedVotes);
+        setShowResults(false);
     }
 
     return (
