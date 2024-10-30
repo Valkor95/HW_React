@@ -48,16 +48,31 @@ const App = () => {
 
     const handleVote = (emojiKey) => {
         setVotes(prevState =>
-            prevState.map(emoji => {emoji => {
+            prevState.map(emoji => {
                 if(emoji.key === emojiKey){
                     const newCount = emoji.count + 1;
                     localStorage.setItem(emoji.localStorage, JSON.stringify(newCount));
                     return {...emoji, count: newCount};
                 }
-            }
             return emoji
             })
         )
+    }
+
+    const handleShowResults = () => {
+        setShowResults(!showResults);
+    }
+
+    const handleGetWinnerEmoji = () => {
+        const maxValue = Math.max(...votes.map(emoji => emoji.count));
+        const winner = votes.find(emoji => emoji.count === maxValue);
+        return winner ? winner.key : null;
+    }
+
+    const handleClearResult = () => {
+        const clearedVotes = votes.map(emoji => {
+
+        })
     }
 
     return (
@@ -79,15 +94,15 @@ const App = () => {
 
             <Row className='d-flex justify-content-center mb-3'>
                 <Col xs='auto'>
-                    <Button variant='primary' onClick={this.handleShowResults}>Show results</Button>
+                    <Button variant='primary' onClick={handleShowResults}>Show results</Button>
                 </Col>
             </Row>
 
             {showResults &&
                 (<>
                         <Results
-                            winner={this.getWinnerEmoji()}/>
-                        <ClearResult onClear={this.handleClearResult}/>
+                            winner={handleGetWinnerEmoji()}/>
+                        <ClearResult onClear={handleClearResult}/>
                     </>
                 )}
         </Container>
