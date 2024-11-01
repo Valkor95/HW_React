@@ -9,7 +9,7 @@ function App() {
             <BrowserRouter>
                 <Header/>
                 <Routes>
-                    <Route path='/' component={MainPage}/>
+                    <Route path='/home' component={MainPage}/>
                     <Route path='/contact' component={ContactsPage}/>
                     <Route path='/about' component={AboutPage}/>
                 </Routes>
