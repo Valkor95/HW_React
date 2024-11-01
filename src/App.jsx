@@ -2,10 +2,12 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 import MainPage from "./Components/Pages/MainPage.jsx";
 import ContactsPage from "./Components/Pages/ContactsPage.jsx";
 import AboutPage from "./Components/Pages/AboutPage.jsx";
+import Header from "./Components/Header.jsx";
 
 function App() {
     return (
             <BrowserRouter>
+                <Header/>
                 <Routes>
                     <Route path='/' component={MainPage}/>
                     <Route path='/contact' component={ContactsPage}/>
