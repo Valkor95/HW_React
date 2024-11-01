@@ -3,9 +3,13 @@ import {Button, TextField} from "@mui/material";
 import './style/MainPage.css'
 function TodoForm(props) {
     const [todoValue, setTodoValue] = useState({})
+
+    const submit = (event) => {
+        event.preventDefault();
+    }
     return (
         <div>
-            <form >
+            <form onSubmit={submit}>
                 <TextField
                     fullWidth
                     id="outlined-basic"
