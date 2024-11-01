@@ -9,9 +9,9 @@ function App() {
             <BrowserRouter>
                 <Header/>
                 <Routes>
-                    <Route path='/home' component={MainPage}/>
-                    <Route path='/contact' component={ContactsPage}/>
-                    <Route path='/about' component={AboutPage}/>
+                    <Route path='/home' element={<MainPage/>}/>
+                    <Route path='/contact' element={<ContactsPage/>}/>
+                    <Route path='/about' element={<AboutPage/>}/>
                 </Routes>
             </BrowserRouter>
     );

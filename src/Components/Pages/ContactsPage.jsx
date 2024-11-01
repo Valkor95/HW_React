@@ -2,7 +2,7 @@ import React from 'react';
 
 function ContactsPage(props) {
     return (
-        <div></div>
+        <div>Contact</div>
     );
 }
 
