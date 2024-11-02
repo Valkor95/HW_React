@@ -24,7 +24,6 @@ function MainPage(props) {
     };
 
     return (
-        <div>
             <Container sx={{height: '100vh'}}>
                 <Box sx={{py:10, display: 'flex', justifyContent: 'center', flexDirection: 'column'}}>
                     <Typography variant="h3">
@@ -35,10 +34,7 @@ function MainPage(props) {
                         <TodoList todos={todos} deleteTodo={deleteTodo}/>
                     </Box>
                 </Box>
-
             </Container>
-
-        </div>
     );
 }
 
