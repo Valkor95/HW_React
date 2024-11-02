@@ -7,9 +7,6 @@ function CardContacts({user}) {
         <Container >
             <Card>
                 <CardContent>
-                    <Typography variant="h4" gutterBottom>
-                        {user.name}
-                    </Typography>
                     <Box>
                         <Typography variant="body1"><strong>Email:</strong> {user.email}</Typography>
                         <Typography variant="body1"><strong>Phone:</strong> {user.phone}</Typography>
