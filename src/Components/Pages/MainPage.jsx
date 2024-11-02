@@ -1,14 +1,20 @@
 import React from 'react';
-import '../style/MainPage.css'
-import {Typography} from "@mui/material";
+import {Container, Typography} from "@mui/material";
 import TodoForm from "../TodoForm.jsx";
+import Box from "@mui/material/Box";
 function MainPage(props) {
     return (
-        <div className='container'>
-            <Typography variant="h3">
-                Todo Form
-            </Typography>
-            <TodoForm className='todoformstyle'/>
+        <div>
+            <Container sx={{height: '100vh'}}>
+                <Box sx={{py:10, display: 'flex', justifyContent: 'center', flexDirection: 'column'}}>
+                    <Typography variant="h3">
+                        Todo Form
+                    </Typography>
+                    <TodoForm className='todoformstyle'/>
+                </Box>
+
+            </Container>
+
         </div>
     );
 }

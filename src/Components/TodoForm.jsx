@@ -29,7 +29,7 @@ function TodoForm() {
                     margin="normal"
                     inputRef={input}
                 />
-                <Button type='submit' variant='outlined'>Відправити</Button>
+                <Button type='submit' variant='outlined'>Записати</Button>
             </form>
         </div>
     );
