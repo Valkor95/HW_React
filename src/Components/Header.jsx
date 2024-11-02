@@ -24,7 +24,7 @@ export default function SimpleBottomNavigation() {
                     >
                         <BottomNavigationAction component={NavLink} to='/home' label="Головна" icon={<RestoreIcon />} />
                         <BottomNavigationAction component={NavLink} to='/contact' label="Контакти" icon={<LocationOnIcon />}/>
-                        <BottomNavigationAction component={NavLink} to='/about' label="Про мене" icon={<LocationOnIcon />}/>
+                        <BottomNavigationAction component={NavLink} to='/about' label="Про мене" icon={<FavoriteIcon />}/>
                     </BottomNavigation>
                 </Box>
             </Container>
