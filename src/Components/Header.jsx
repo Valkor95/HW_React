@@ -30,9 +30,39 @@ export default function SimpleBottomNavigation() {
                             setValue(newValue);
                         }}
                     >
-                        <BottomNavigationAction component={NavLink} to='/home' label="Головна" icon={<RestoreIcon />} />
-                        <BottomNavigationAction component={NavLink} to='/contact' label="Контакти" icon={<LocationOnIcon />}/>
-                        <BottomNavigationAction component={NavLink} to='/about' label="Про мене" icon={<FavoriteIcon />}/>
+                        <BottomNavigationAction
+                            component={NavLink}
+                            to='/home'
+                            label="Головна"
+                            icon={<RestoreIcon />}
+                            sx={{
+                                '&:focus': {
+                                color: darkMode ? '#A44FB3FF' : '',
+                                },
+                            }}
+                        />
+                        <BottomNavigationAction
+                            component={NavLink}
+                            to='/contact'
+                            label="Контакти"
+                            icon={<LocationOnIcon />}
+                            sx={{
+                                '&:focus': {
+                                    color: darkMode ? '#A44FB3FF' : '',
+                                },
+                            }}
+                        />
+                        <BottomNavigationAction
+                            component={NavLink}
+                            to='/about'
+                            label="Про мене"
+                            icon={<FavoriteIcon />}
+                            sx={{
+                                '&:focus': {
+                                    color: darkMode ? '#A44FB3FF' : '',
+                                },
+                            }}
+                        />
                     </BottomNavigation>
                     </Box>
                         <Button variant='outlined' color={darkMode ? "secondary" : ""} onClick={toggleTheme}>
