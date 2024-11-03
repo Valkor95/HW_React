@@ -6,13 +6,23 @@ import Header from "./Components/Header.jsx";
 import { createTheme, ThemeProvider as MuiThemeProvider } from "@mui/material";
 import { ThemeProvider} from './ThemeContext.jsx';
 import AppRoutes from "./Components/AppRoutes.jsx";
+import {ErrorBoundary} from "react-error-boundary";
 
 function App() {
 
+    function MyFallBackComponent(){
+        return <div>ERROR!Something is wrong!</div>
+    }
     return (
-        <ThemeProvider>
-            <AppRoutes />
-        </ThemeProvider>
+        <ErrorBoundary
+            FallbackComponent={MyFallBackComponent}
+            onError={(error, errorInfo) => console.log({error, errorInfo})}
+        >
+            <ThemeProvider>
+                <AppRoutes />
+            </ThemeProvider>
+        </ErrorBoundary>
+
     );
 }
 
