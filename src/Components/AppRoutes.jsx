@@ -3,7 +3,7 @@ import MainPage from "../Components/Pages/MainPage.jsx";
 import ContactsPage from "../Components/Pages/ContactsPage.jsx";
 import AboutPage from "../Components/Pages/AboutPage.jsx";
 import Header from "../Components/Header.jsx";
-import { createTheme, ThemeProvider as MuiThemeProvider } from "@mui/material";
+import {createTheme, CssBaseline, ThemeProvider as MuiThemeProvider} from "@mui/material";
 import { useTheme } from '../ThemeContext.jsx';
 
 function AppRoutes() {
@@ -12,11 +12,15 @@ function AppRoutes() {
     const theme = createTheme({
         palette: {
             mode: darkMode ? 'dark' : 'light',
+            background: {
+                default: darkMode ? '#303030' : '#ffffff',
+            }
         },
     });
 
     return (
         <MuiThemeProvider theme={theme}>
+            <CssBaseline />
             <BrowserRouter>
                 <Header />
                 <Routes>
