@@ -4,7 +4,7 @@ import ContactsPage from "./Components/Pages/ContactsPage.jsx";
 import AboutPage from "./Components/Pages/AboutPage.jsx";
 import Header from "./Components/Header.jsx";
 import { createTheme, ThemeProvider as MuiThemeProvider } from "@mui/material";
-import { ThemeProvider, useTheme } from './ThemeContext.js';
+import { ThemeProvider, useTheme } from './ThemeContext.jsx';
 
 function App() {
     const { darkMode } = useTheme();
