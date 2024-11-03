@@ -35,7 +35,7 @@ export default function SimpleBottomNavigation() {
                         <BottomNavigationAction component={NavLink} to='/about' label="Про мене" icon={<FavoriteIcon />}/>
                     </BottomNavigation>
                     </Box>
-                        <Button variant='outlined' color="inherit" onClick={toggleTheme}>
+                        <Button variant='outlined' color={darkMode ? "secondary" : ""} onClick={toggleTheme}>
                             Включити {darkMode ? 'cвітлу' : 'темну'} тему
                         </Button>
                     </Stack>

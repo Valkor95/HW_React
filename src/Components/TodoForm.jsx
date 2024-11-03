@@ -23,24 +23,34 @@ function TodoForm({ addTodo }) {
                     fullWidth
                     id="outlined-basic"
                     label="Текст"
-                    helperText="Запишіть вашу таску"
+
                     variant="outlined"
                     margin="normal"
                     inputRef={input}
+                    InputLabelProps={{
+                        style: {
+                            color: darkMode ? '#A44FB3FF' : '#000000',
+                        },
+                    }}
+                    FormHelperTextProps={{
+                        style: {
+                            color: darkMode ? '#A44FB3FF' : '#000000',
+                        },
+                    }}
+                    helperText="Запишіть вашу таску"
                     sx={{
                         backgroundColor: darkMode ? '#424242' : '#ffffff',
-                        color: darkMode ? '#ffffff' : '#000000',
                         '& .MuiOutlinedInput-root': {
                             '& fieldset': {
-                                borderColor: darkMode ? '#ffffff' : '#000000',
+                                borderColor: darkMode ? '#A44FB3FF' : '#000000',
                             },
                             '&:hover fieldset': {
-                                borderColor: darkMode ? '#ffffff' : '#000000',
+                                borderColor: darkMode ? '#A44FB3FF' : '#000000',
                             },
                         },
                     }}
                 />
-                <Button type='submit' variant='outlined'>Записати</Button>
+                <Button color={darkMode ? "secondary" : "primary"} type='submit' variant='outlined'>Записати</Button>
             </form>
         </div>
     );
