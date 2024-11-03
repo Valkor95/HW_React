@@ -1,8 +1,10 @@
 import React, {useRef, useState} from 'react';
 import {Button, TextField} from "@mui/material";
 import './style/MainPage.css'
+import {useTheme} from "../ThemeContext.jsx";
 function TodoForm({ addTodo }) {
     const input = useRef()
+    const { darkMode } = useTheme();
 
     const submit = (event) => {
         event.preventDefault();
@@ -25,6 +27,18 @@ function TodoForm({ addTodo }) {
                     variant="outlined"
                     margin="normal"
                     inputRef={input}
+                    sx={{
+                        backgroundColor: darkMode ? '#424242' : '#ffffff',
+                        color: darkMode ? '#ffffff' : '#000000',
+                        '& .MuiOutlinedInput-root': {
+                            '& fieldset': {
+                                borderColor: darkMode ? '#ffffff' : '#000000',
+                            },
+                            '&:hover fieldset': {
+                                borderColor: darkMode ? '#ffffff' : '#000000',
+                            },
+                        },
+                    }}
                 />
                 <Button type='submit' variant='outlined'>Записати</Button>
             </form>
