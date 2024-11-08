@@ -2,6 +2,7 @@ import React from 'react';
 import {AppBar, Box, Container, Toolbar, Typography} from "@mui/material";
 import Grid from '@mui/material/Grid2';
 import Header from "./Header.jsx";
+import Routes from "./Routes.jsx";
 
 function Layout(props) {
     return (
@@ -11,13 +12,15 @@ function Layout(props) {
             <Container maxWidth="lg" sx={{ flex: 1, my: 4 }}>
                 <Grid container spacing={3}>
                     <Grid sx={{background: 'red'}} size={{ xs: 12, md: "grow" }}>
-                        <div>size=grow</div>
+                        <Box>SideBar Left</Box>
                     </Grid>
                     <Grid sx={{background: 'red'}} size={{ xs: 12, md: 6 }}>
-                        <div>size=6</div>
+                        <Box>
+                            <Routes/>
+                        </Box>
                     </Grid>
                     <Grid sx={{background: 'red'}} size={{ xs: 12, md: "grow" }}>
-                        <div>size=grow</div>
+                        <Box>SideBar Right</Box>
                     </Grid>
                 </Grid>
             </Container>
