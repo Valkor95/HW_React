@@ -1,5 +1,6 @@
 import React from 'react';
-import {AppBar, Box, Container, Grid, Toolbar, Typography} from "@mui/material";
+import {AppBar, Box, Container, Toolbar, Typography} from "@mui/material";
+import Grid from '@mui/material/Grid2';
 
 function Layout(props) {
     return (
@@ -15,22 +16,7 @@ function Layout(props) {
 
             {/* Main Content */}
             <Container maxWidth="lg" sx={{ flex: 1, my: 4 }}>
-                <Grid container spacing={3}>
-                    {/* Left Sidebar */}
-                    <Grid item xs={12} md={3}>
-                        <Box sx={{ bgcolor: 'grey.200', p: 2 }}>Левый Сайдбар</Box>
-                    </Grid>
-
-                    {/* Main Content Area */}
-                    <Grid item xs={12} md={6}>
-                        <Box sx={{ bgcolor: 'grey.100', p: 2 }}>Основное Содержимое</Box>
-                    </Grid>
-
-                    {/* Right Sidebar */}
-                    <Grid item xs={12} md={3}>
-                        <Box sx={{ bgcolor: 'grey.200', p: 2 }}>Правый Сайдбар</Box>
-                    </Grid>
-                </Grid>
+                
             </Container>
 
             {/* Footer */}

@@ -2,7 +2,7 @@ import React, {createContext, useContext, useState} from 'react';
 
 export const ContextTheme = createContext('')
 
-function ThProvider({children}) {
+export function ThProvider({children}) {
     const [darkMode, setDarkMode] = useState(false);
 
     const toggleTheme = () => {
