@@ -1,11 +1,14 @@
 import React from 'react';
-import {useParams} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
+import {Button} from "@mui/material";
 
 function UserIdPage(props) {
     const {userID} = useParams()
 
     return (
-        <div></div>
+        <div> User: {userID}
+            <Button component={Link} to="/home" variant="contained">Back to main menu</Button>
+        </div>
     );
 }
 
