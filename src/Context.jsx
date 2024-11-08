@@ -1,8 +1,8 @@
 import React, {createContext, useContext, useState} from 'react';
 
-export const ContextTheme = createContext('')
+export const ContextData = createContext('')
 
-export function ThProvider({children}) {
+export function Provider({children}) {
     const [darkMode, setDarkMode] = useState(false);
 
     const toggleTheme = () => {
@@ -10,11 +10,11 @@ export function ThProvider({children}) {
     }
 
     return (
-        <ContextTheme.Provider value={{darkMode, toggleTheme}}>
+        <ContextData.Provider value={{darkMode, toggleTheme}}>
             {children}
-        </ContextTheme.Provider>
+        </ContextData.Provider>
     );
 }
 
-export const useTheme = () => useContext(ContextTheme)
+export const useTheme = () => useContext(ContextData)
 

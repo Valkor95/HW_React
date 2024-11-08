@@ -1,6 +1,6 @@
 import React from 'react';
 import {Box, Button} from "@mui/material";
-import {useTheme} from "../ContextTheme.jsx";
+import {useTheme} from "../Context.jsx";
 
 function ButtonFetch(props) {
     const {darkMode} = useTheme()

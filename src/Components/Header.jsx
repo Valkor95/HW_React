@@ -1,6 +1,6 @@
 import React from 'react';
 import {AppBar, Button, Toolbar, Typography} from "@mui/material";
-import {useTheme} from "../ContextTheme.jsx";
+import {useTheme} from "../Context.jsx";
 
 function Header(props) {
     const {darkMode, toggleTheme} = useTheme()

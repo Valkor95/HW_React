@@ -1,15 +1,15 @@
 import React from 'react';
-import {ThProvider} from "./ContextTheme.jsx";
+import {Provider} from "./Context.jsx";
 import Layout from "./Components/Layout.jsx";
 import {BrowserRouter} from "react-router-dom";
 
 function App(props) {
     return (
-        <ThProvider>
+        <Provider>
             <BrowserRouter>
                 <Layout/>
             </BrowserRouter>
-        </ThProvider>
+        </Provider>
     );
 }
 
