@@ -4,6 +4,7 @@ export const ContextData = createContext('')
 
 export function Provider({children}) {
     const [darkMode, setDarkMode] = useState(false);
+    const [data, setData] = useState(null)
 
     const toggleTheme = () => {
         setDarkMode(prevState => !prevState)
