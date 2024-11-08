@@ -1,4 +1,4 @@
-export function getData(){
+export function getDataUsers(){
     return JSON.parse(localStorage.getItem('users')) || [];
 }
 
