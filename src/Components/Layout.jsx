@@ -8,7 +8,6 @@ function Layout(props) {
         <Box sx={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
             <Header/>
 
-            {/* Main Content */}
             <Container maxWidth="lg" sx={{ flex: 1, my: 4 }}>
                 <Grid container spacing={3}>
                     <Grid sx={{background: 'red'}} size={{ xs: 12, md: "grow" }}>
