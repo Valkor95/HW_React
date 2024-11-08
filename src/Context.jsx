@@ -10,6 +10,8 @@ export function Provider({children}) {
         setDarkMode(prevState => !prevState)
     }
 
+    
+
     return (
         <ContextData.Provider value={{darkMode, toggleTheme}}>
             {children}
