@@ -33,8 +33,12 @@ export function Provider({children}) {
         }
     }, []);
 
+    const deleteAll = () => {
+        localStorage.clear()
+    }
+
     return (
-        <ContextData.Provider value={{darkMode, toggleTheme, fetchData, users}}>
+        <ContextData.Provider value={{darkMode, toggleTheme, fetchData, users, deleteAll}}>
             {children}
         </ContextData.Provider>
     );

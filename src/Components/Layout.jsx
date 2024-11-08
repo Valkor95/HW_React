@@ -5,6 +5,7 @@ import Header from "./Header.jsx";
 import Routes from "./Routes.jsx";
 import {useTheme} from "../Context.jsx";
 import ButtonFetch from "./ButtonFetch.jsx";
+import ButtonDelete from "./ButtonDelete.jsx";
 
 function Layout(props) {
     const { darkMode } = useTheme();
@@ -61,7 +62,7 @@ function Layout(props) {
                                     borderRadius: '10px'
                                 }}
                                 >
-                                    SideBar Right
+                                    <ButtonDelete/>
                                 </Box>
                             </Grid>
                         </Grid>
