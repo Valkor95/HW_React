@@ -4,6 +4,7 @@ import Grid from '@mui/material/Grid2';
 import Header from "./Header.jsx";
 import Routes from "./Routes.jsx";
 import {useTheme} from "../ContextTheme.jsx";
+import ButtonFetch from "./ButtonFetch.jsx";
 
 function Layout(props) {
     const { darkMode } = useTheme();
@@ -31,15 +32,37 @@ function Layout(props) {
                             alignItems="flex-start"
                         >
                             <Grid size={{ xs: 12, md: 3 }}>
-                                <Box sx={{ bgcolor: darkMode ? '#4f4f4f' : 'grey.200', p: 2, textAlign: 'center' }}>SideBar Left</Box>
+                                <Box sx={{
+                                    bgcolor: darkMode ? '#4f4f4f' : 'grey.200',
+                                    p: 2,
+                                    textAlign: 'center',
+                                    borderRadius: '10px'
+                                }}
+                                >
+                                    <ButtonFetch/>
+                                </Box>
                             </Grid>
                             <Grid  size={{ xs: 12, md: 6 }}>
-                                <Box sx={{ bgcolor: darkMode ? '#4f4f4f' : 'grey.200', p: 2, textAlign: 'center' }}>
+                                <Box sx={{
+                                    bgcolor: darkMode ? '#4f4f4f' : 'grey.200',
+                                    p: 2,
+                                    textAlign: 'center',
+                                    borderRadius: '10px'
+                                }}
+                                >
                                     <Routes/>
                                 </Box>
                             </Grid>
                             <Grid  size={{ xs: 12, md: 3 }}>
-                                <Box sx={{ bgcolor: darkMode ? '#4f4f4f' : 'grey.200', p: 2, textAlign: 'center' }}>SideBar Right</Box>
+                                <Box sx={{
+                                    bgcolor: darkMode ? '#4f4f4f' : 'grey.200',
+                                    p: 2,
+                                    textAlign: 'center',
+                                    borderRadius: '10px'
+                                }}
+                                >
+                                    SideBar Right
+                                </Box>
                             </Grid>
                         </Grid>
                     </Container>
