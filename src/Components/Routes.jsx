@@ -1,12 +1,15 @@
 import React from 'react';
-import {useRoutes} from "react-router-dom";
+import {Navigate, useRoutes} from "react-router-dom";
 import MainPage from "../Page/MainPage.jsx";
 import UserIdPage from "../Page/UserIdPage.jsx";
+import Page404 from "./Page404.jsx";
 
-function Routes(props) {
+function Routes() {
     const routesElements = useRoutes([
-        {path: '/', element: <MainPage/>},
-        {path: '/:userID', element: <UserIdPage/>}
+        {path: '/', element: <Navigate to="/home" replace/>},
+        {path: "/home", element: <MainPage />},
+        {path: '/:userID', element: <UserIdPage/>},
+        {path: '*', element: <Page404/>}
     ])
     return routesElements
 }
