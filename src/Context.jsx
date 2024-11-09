@@ -35,6 +35,7 @@ export function Provider({children}) {
 
     const deleteAll = () => {
         localStorage.clear()
+        setUsers(null)
     }
 
     return (
