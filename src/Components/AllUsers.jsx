@@ -2,26 +2,24 @@ import React from 'react';
 import {useTheme} from "../Context.jsx";
 import {Box, Typography} from "@mui/material";
 import CardUsers from "./CardUsers.jsx";
-import ButtonsUpdateDelete from "./ButtonsUpdateDelete.jsx";
 
 function AllUsers(props) {
-    const {users, setUsers} = useTheme();
-
+    const {users} = useTheme();
+    console.log(users)
     return (
         <>
             {users ? (
                 <Box
                     sx={{
                         display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center'
+                        flexDirection: 'column',
+                        gap: '25px'
                     }}
                 >
-                    <CardUsers data={users}/>
-                    <ButtonsUpdateDelete/>
+                    {users.map(user => <CardUsers key={user.id} data={user}/>)}
                 </Box>
             ) : (
-                <Typography variant='h2' alignItems='center'>There are no users!</Typography>
+                <Typography variant='h2'>There are no users!</Typography>
             )}
         </>
     );
