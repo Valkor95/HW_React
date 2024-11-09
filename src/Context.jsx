@@ -26,7 +26,9 @@ export function Provider({children}) {
 
     useEffect(() => {
         const savedUsers = getDataUsers();
-        if (savedUsers){
+        if (savedUsers.length === 0){
+            setUsers(null)
+        } else if (savedUsers){
             setUsers(savedUsers)
         } else {
             fetchData()
