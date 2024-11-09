@@ -5,7 +5,6 @@ import CardUsers from "./CardUsers.jsx";
 
 function AllUsers(props) {
     const {users} = useTheme();
-    console.log(users)
     return (
         <>
             {users ? (

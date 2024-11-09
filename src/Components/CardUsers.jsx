@@ -3,7 +3,6 @@ import {Box, Button, Stack, Typography} from "@mui/material";
 import {useTheme} from "../Context.jsx";
 
 function CardUsers({ data }) {
-    console.log({ data })
     const {darkMode} = useTheme()
     return (
         <>
