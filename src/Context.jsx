@@ -38,7 +38,7 @@ export function Provider({children}) {
     }
 
     return (
-        <ContextData.Provider value={{darkMode, toggleTheme, fetchData, users, deleteAll}}>
+        <ContextData.Provider value={{darkMode, toggleTheme, fetchData, users, setUsers, deleteAll}}>
             {children}
         </ContextData.Provider>
     );
