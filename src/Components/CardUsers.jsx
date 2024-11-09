@@ -14,20 +14,24 @@ function CardUsers({ data }) {
                 alignItems="center"
             >
                 <Stack
-                 alignItems='flex-start'
+                    display='flex'
+                    alignItems='flex-start'
+                    sx={{ width: '70%' }}
                 >
-                    <Typography variant='h5'>{data.id}</Typography>
+                    <Typography variant='h5' >{data.id}</Typography>
                     <Typography variant='h6'>{data.name}</Typography>
                     <Typography variant='body2'>{data.email}</Typography>
                 </Stack>
                 <Stack
                     direction="row"
                     spacing={2}
+                    justifyContent="flex-end"
+                    sx={{ width: '30%' }}
                 >
-                    <Button variant='outlined' color={darkMode ? "secondary" : "primary"}>
+                    <Button sx={{flexShrink: 0  }} variant='outlined' color={darkMode ? "secondary" : "primary"}>
                         Змінити
                     </Button>
-                    <Button variant='outlined' color={darkMode ? "warning" : "error"}>
+                    <Button sx={{flexShrink: 0  }} variant='outlined' color={darkMode ? "warning" : "error"}>
                         Видалити
                     </Button>
                 </Stack>
