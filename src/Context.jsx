@@ -52,8 +52,14 @@ export function Provider({children}) {
         navigate(`/${dataId}`)
     }
 
+    const getUserById = (id) => {
+        const savedUsers = getDataUsers();
+        return savedUsers.findIndex(user => user.id === id);
+
+    }
+
     return (
-        <ContextData.Provider value={{darkMode, toggleTheme, fetchData, users, setUsers, deleteAll, deleteUserId, updateUserId}}>
+        <ContextData.Provider value={{darkMode, toggleTheme, fetchData, users, setUsers, deleteAll, deleteUserId, updateUserId, getUserById}}>
             {children}
         </ContextData.Provider>
     );

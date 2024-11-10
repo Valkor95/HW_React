@@ -1,14 +1,31 @@
 import React from 'react';
 import {Link, useParams} from "react-router-dom";
-import {Button} from "@mui/material";
+import {Box, Button, Typography} from "@mui/material";
+import {useTheme} from "../Context.jsx";
 
 function UserIdPage(props) {
     const {userID} = useParams()
+    const {getUserById, darkMode} = useTheme()
 
     return (
-        <div> User: {userID}
-            <Button component={Link} to="/home" variant="contained">Back to main menu</Button>
-        </div>
+        <Box sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+            gap: '15px'
+        }}>
+            <Typography variant='subtitle1'>User: {userID}</Typography>
+
+            <Button
+                sx={{ maxWidth: '50%'}}
+                component={Link}
+                to="/home"
+                variant="contained"
+                color={darkMode ? "secondary" : "primary"}
+            >
+                Back to main menu</Button>
+        </Box>
     );
 }
 
