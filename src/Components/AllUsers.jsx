@@ -7,7 +7,7 @@ function AllUsers(props) {
     const {users, deleteUserId, updateUserId} = useTheme();
     return (
         <>
-            {users ? (
+            {users && users.length !== 0 ? (
                 <Box
                     sx={{
                         display: 'flex',
