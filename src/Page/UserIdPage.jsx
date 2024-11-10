@@ -29,7 +29,7 @@ function UserIdPage(props) {
             gap: '15px'
         }}>
             <Typography variant='subtitle1'>User: {userID}</Typography>
-            <Container maxWidth="sm">
+            <Container maxWidth="sm" sx={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
                 <Formik
                     initialValues={user}
                     onSubmit={handleSubmit}
@@ -37,7 +37,7 @@ function UserIdPage(props) {
                 >
                     {({errors, touched}) => (
                         <Form>
-                            <Box sx={{ mt: 3 }}>
+                            <Box sx={{ mt: 1 }}>
                                 <Field
                                     name="name"
                                     as={TextField}
@@ -60,16 +60,21 @@ function UserIdPage(props) {
                                     helperText={touched.email && errors.email}
                                 />
                             </Box>
-                            <Button sx={{ maxWidth: '20%'}} color={darkMode ? "secondary" : "primary"} variant="contained" fullWidth type="submit" sx={{ mt: 2 }}>
-                                Відправити
-                            </Button>
+                            <Box
+                                sx={{ maxWidth: '50%', margin: '0 auto'}}
+                            >
+                                <Button  color={darkMode ? "secondary" : "primary"} variant="contained" fullWidth type="submit" sx={{ mt: 2 }}>
+                                    Відправити
+                                </Button>
+                            </Box>
+
                         </Form>
                     )}
                 </Formik>
             </Container>
 
             <Button
-                sx={{ maxWidth: '50%'}}
+                sx={{ maxWidth: '50%', margin: '0 auto'}}
                 component={Link}
                 to="/home"
                 variant="contained"
