@@ -5,11 +5,13 @@ import {BrowserRouter} from "react-router-dom";
 
 function App(props) {
     return (
-        <Provider>
+
             <BrowserRouter>
+                <Provider>
                 <Layout/>
+                </Provider>
             </BrowserRouter>
-        </Provider>
+
     );
 }
 

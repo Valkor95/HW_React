@@ -1,12 +1,13 @@
 import React, {createContext, useContext, useEffect, useState} from 'react';
 import {getDataUsers, setDataUsers} from "./services/StorageService.js";
+import {useNavigate} from "react-router-dom";
 
 export const ContextData = createContext('')
 
 export function Provider({children}) {
     const [darkMode, setDarkMode] = useState(false);
     const [users, setUsers] = useState(null)
-
+    const navigate = useNavigate()
     const toggleTheme = () => {
         setDarkMode(prevState => !prevState)
     }
@@ -48,7 +49,7 @@ export function Provider({children}) {
     }
 
     const updateUserId = (dataId) => {
-        console.log('Hello')
+        navigate(`/${dataId}`)
     }
 
     return (
