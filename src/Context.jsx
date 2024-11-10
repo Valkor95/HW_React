@@ -54,8 +54,7 @@ export function Provider({children}) {
 
     const getUserById = (id) => {
         const savedUsers = getDataUsers();
-        return savedUsers.findIndex(user => user.id === id);
-
+        return savedUsers.find(user => user.id === id);
     }
 
     return (

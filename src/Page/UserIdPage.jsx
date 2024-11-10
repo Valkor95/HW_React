@@ -1,12 +1,25 @@
 import React from 'react';
 import {Link, useParams} from "react-router-dom";
-import {Box, Button, Typography} from "@mui/material";
+import {Box, Button, Container, TextField, Typography} from "@mui/material";
 import {useTheme} from "../Context.jsx";
+import {Field, Form, Formik} from "formik";
+import * as Yup from 'yup';
+
+const UserSchema = Yup.object().shape({
+    name: Yup.string().required('Required'),
+    email: Yup.string().email().required('Required')
+})
 
 function UserIdPage(props) {
     const {userID} = useParams()
     const {getUserById, darkMode} = useTheme()
 
+    const user = getUserById(userID)
+
+    const handleSubmit = (values) => {
+        console.log(values)
+
+    }
     return (
         <Box sx={{
             display: 'flex',
@@ -16,6 +29,44 @@ function UserIdPage(props) {
             gap: '15px'
         }}>
             <Typography variant='subtitle1'>User: {userID}</Typography>
+            <Container maxWidth="sm">
+                <Formik
+                    initialValues={user}
+                    onSubmit={handleSubmit}
+                    validationSchema={UserSchema}
+                >
+                    {({errors, touched}) => (
+                        <Form>
+                            <Box sx={{ mt: 3 }}>
+                                <Field
+                                    name="name"
+                                    as={TextField}
+                                    fullWidth
+                                    label="Ім'я"
+                                    margin="normal"
+                                    variant="outlined"
+                                    error={touched.name && Boolean(errors.name)}
+                                    helperText={touched.name && errors.name}
+                                />
+
+                                <Field
+                                    name="email"
+                                    as={TextField}
+                                    fullWidth
+                                    label="email"
+                                    margin="normal"
+                                    variant="outlined"
+                                    error={touched.email && Boolean(errors.email)}
+                                    helperText={touched.email && errors.email}
+                                />
+                            </Box>
+                            <Button sx={{ maxWidth: '20%'}} color={darkMode ? "secondary" : "primary"} variant="contained" fullWidth type="submit" sx={{ mt: 2 }}>
+                                Відправити
+                            </Button>
+                        </Form>
+                    )}
+                </Formik>
+            </Container>
 
             <Button
                 sx={{ maxWidth: '50%'}}
@@ -24,7 +75,7 @@ function UserIdPage(props) {
                 variant="contained"
                 color={darkMode ? "secondary" : "primary"}
             >
-                Back to main menu</Button>
+                Повернутися до меню</Button>
         </Box>
     );
 }
