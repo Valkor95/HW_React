@@ -4,6 +4,7 @@ import {Box, Button, Container, TextField, Typography} from "@mui/material";
 import {useTheme} from "../Context.jsx";
 import {Field, Form, Formik} from "formik";
 import * as Yup from 'yup';
+import {getDataUsers} from "../services/StorageService.js";
 
 const UserSchema = Yup.object().shape({
     name: Yup.string().required('Required'),
@@ -12,9 +13,9 @@ const UserSchema = Yup.object().shape({
 
 function UserIdPage(props) {
     const {userID} = useParams()
-    const {getUserById, darkMode} = useTheme()
+    const { getUserById, darkMode} = useTheme()
 
-    const user = getUserById(userID)
+    const user = getUserById(+userID)
 
     const handleSubmit = (values) => {
         console.log(values)
