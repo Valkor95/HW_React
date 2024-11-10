@@ -13,13 +13,12 @@ const UserSchema = Yup.object().shape({
 
 function UserIdPage(props) {
     const {userID} = useParams()
-    const { getUserById, darkMode} = useTheme()
+    const { getUserById, updateUserById, darkMode} = useTheme()
 
     const user = getUserById(+userID)
 
     const handleSubmit = (values) => {
-        console.log(values)
-
+        updateUserById(values)
     }
     return (
         <Box sx={{
@@ -65,7 +64,7 @@ function UserIdPage(props) {
                                 sx={{ maxWidth: '50%', margin: '0 auto'}}
                             >
                                 <Button  color={darkMode ? "secondary" : "primary"} variant={darkMode ? 'outlined' : "contained"} fullWidth type="submit" sx={{ mt: 2 }}>
-                                    Відправити
+                                    Відправити зміни
                                 </Button>
                             </Box>
 

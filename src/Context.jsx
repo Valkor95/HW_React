@@ -48,7 +48,7 @@ export function Provider({children}) {
         setDataUsers(newUsers);
     }
 
-    const updateUserId = (dataId) => {
+    const navigateUserId = (dataId) => {
         navigate(`/${dataId}`)
     }
 
@@ -57,8 +57,26 @@ export function Provider({children}) {
         return savedUsers.find(user => user.id === id);
     }
 
+    const getUserIndexById = (id) => {
+        const savedUsers = getDataUsers();
+        return savedUsers.findIndex(user => user.id === id);
+    }
+
+    const updateUserById = (user) => {
+        const savedUsers = getDataUsers();
+        const index = getUserIndexById(user.id)
+
+        if(index === -1){
+            return;
+        }
+
+        savedUsers[index] = user;
+        setUsers(savedUsers);
+        setDataUsers(savedUsers);
+    }
+
     return (
-        <ContextData.Provider value={{darkMode, toggleTheme, fetchData, users, setUsers, deleteAll, deleteUserId, updateUserId, getUserById}}>
+        <ContextData.Provider value={{darkMode, toggleTheme, fetchData, users, setUsers, deleteAll, deleteUserId, navigateUserId, getUserById, updateUserById}}>
             {children}
         </ContextData.Provider>
     );
