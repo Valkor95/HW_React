@@ -64,7 +64,7 @@ function UserIdPage(props) {
                             <Box
                                 sx={{ maxWidth: '50%', margin: '0 auto'}}
                             >
-                                <Button  color={darkMode ? "secondary" : "primary"} variant="contained" fullWidth type="submit" sx={{ mt: 2 }}>
+                                <Button  color={darkMode ? "secondary" : "primary"} variant={darkMode ? 'outlined' : "contained"} fullWidth type="submit" sx={{ mt: 2 }}>
                                     Відправити
                                 </Button>
                             </Box>
