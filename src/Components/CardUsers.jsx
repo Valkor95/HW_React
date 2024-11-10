@@ -2,7 +2,7 @@ import React from 'react';
 import {Box, Button, Stack, Typography} from "@mui/material";
 import {useTheme} from "../Context.jsx";
 
-function CardUsers({ data }) {
+function CardUsers({ data, onDelete }) {
     const {darkMode} = useTheme()
     return (
         <>
@@ -31,7 +31,7 @@ function CardUsers({ data }) {
                     <Button sx={{flexShrink: 0  }} variant='outlined' color={darkMode ? "secondary" : "primary"}>
                         Змінити
                     </Button>
-                    <Button sx={{flexShrink: 0  }} variant='outlined' color={darkMode ? "warning" : "error"}>
+                    <Button sx={{flexShrink: 0  }} variant='outlined' color={darkMode ? "warning" : "error"} onClick={onDelete}>
                         Видалити
                     </Button>
                 </Stack>

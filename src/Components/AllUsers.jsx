@@ -4,7 +4,7 @@ import {Box, Typography} from "@mui/material";
 import CardUsers from "./CardUsers.jsx";
 
 function AllUsers(props) {
-    const {users} = useTheme();
+    const {users, deleteUserId} = useTheme();
     return (
         <>
             {users ? (
@@ -15,7 +15,7 @@ function AllUsers(props) {
                         gap: '25px'
                     }}
                 >
-                    {users.map(user => <CardUsers key={user.id} data={user}/>)}
+                    {users.map(user => <CardUsers key={user.id} data={user} onDelete={() => deleteUserId(user.id)}/>)}
                 </Box>
             ) : (
                 <Typography variant='h2'>There are no users!</Typography>

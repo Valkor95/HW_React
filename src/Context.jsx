@@ -40,8 +40,15 @@ export function Provider({children}) {
         setUsers(null)
     }
 
+    const deleteUserId = (dataId) => {
+        const savedUsers = getDataUsers();
+        const newUsers = savedUsers.filter(user => user.id !== dataId);
+        setUsers(newUsers);
+        setDataUsers(newUsers);
+    }
+
     return (
-        <ContextData.Provider value={{darkMode, toggleTheme, fetchData, users, setUsers, deleteAll}}>
+        <ContextData.Provider value={{darkMode, toggleTheme, fetchData, users, setUsers, deleteAll, deleteUserId}}>
             {children}
         </ContextData.Provider>
     );
