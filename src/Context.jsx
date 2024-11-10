@@ -47,8 +47,12 @@ export function Provider({children}) {
         setDataUsers(newUsers);
     }
 
+    const updateUserId = (dataId) => {
+        console.log('Hello')
+    }
+
     return (
-        <ContextData.Provider value={{darkMode, toggleTheme, fetchData, users, setUsers, deleteAll, deleteUserId}}>
+        <ContextData.Provider value={{darkMode, toggleTheme, fetchData, users, setUsers, deleteAll, deleteUserId, updateUserId}}>
             {children}
         </ContextData.Provider>
     );
