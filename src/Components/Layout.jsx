@@ -37,7 +37,8 @@ function Layout(props) {
                                     bgcolor: darkMode ? '#4f4f4f' : 'grey.200',
                                     p: 2,
                                     textAlign: 'center',
-                                    borderRadius: '10px'
+                                    borderRadius: '10px',
+                                    flexGrow: 1
                                 }}
                                 >
                                     <ButtonFetch/>
@@ -59,7 +60,8 @@ function Layout(props) {
                                     bgcolor: darkMode ? '#4f4f4f' : 'grey.200',
                                     p: 2,
                                     textAlign: 'center',
-                                    borderRadius: '10px'
+                                    borderRadius: '10px',
+                                    flexGrow: 1
                                 }}
                                 >
                                     <ButtonDelete/>
