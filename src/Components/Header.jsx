@@ -1,6 +1,9 @@
 import React, {useState} from 'react';
-import {AppBar, BottomNavigation, Button, Toolbar, Typography} from "@mui/material";
+import {AppBar, BottomNavigation, Box, Button, Toolbar, Typography} from "@mui/material";
 import {useTheme} from "../Context.jsx";
+import {NavLink} from "react-router-dom";
+import RestoreIcon from "@mui/icons-material/Restore";
+import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 
 function Header(props) {
     const {darkMode, toggleTheme} = useTheme();
@@ -8,17 +11,42 @@ function Header(props) {
     return (
         <AppBar position="static">
             <Toolbar>
-                <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                    Header
-                </Typography>
-                <BottomNavigation
+                <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
+                    <Box sx={{ display: 'flex', alignItems: 'center',  }}>
+                    <Typography variant="h6" component="div" >
+                        Header
+                    </Typography>
 
-                >
+                        <BottomNavigation
+                            showLabels
+                            value={value}
+                            onChange={(event, newValue) => {
+                                setValue(newValue);
+                            }}
+                            sx={{ marginLeft: 2, flexGrow: 1,  height: 65,}}
+                        >
+                            <BottomNavigationAction
+                                component={NavLink}
+                                to='/home'
+                                label="Головна"
+                                icon={<RestoreIcon />}
+                                sx={{
+                                    '&:focus': {
+                                        color: darkMode ? '#A44FB3FF' : '',
+                                    },
+                                }}
+                            />
+                        </BottomNavigation>
 
-                </BottomNavigation>
-                <Button variant='outlined' color={darkMode ? "secondary" : ""} onClick={toggleTheme}>
-                    Включити {darkMode ? 'cвітлу' : 'темну'} тему
-                </Button>
+
+                    </Box>
+
+                    <Box>
+                        <Button variant='outlined' color={darkMode ? "secondary" : ""} onClick={toggleTheme}>
+                            Включити {darkMode ? 'cвітлу' : 'темну'} тему
+                        </Button>
+                    </Box>
+                </Box>
             </Toolbar>
         </AppBar>
     );
