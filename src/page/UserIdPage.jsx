@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Link, useParams} from "react-router-dom";
 import {Box, Button, Container, TextField, Typography} from "@mui/material";
 import {useTheme} from "../Context.jsx";
@@ -16,18 +16,24 @@ const UserSchema = Yup.object().shape({
 function UserIdPage(props) {
     const {userID} = useParams()
     const { getUserById, updateUserById, darkMode} = useTheme()
-    const [addSubmitted, setAddSubmitted] = useState(false)
+    const [isNewUser, setIsNewUser] = useState(!userID)
     const dispatch = useDispatch();
     const {data} = useSelector((state) => state.data)
 
-    const user = getUserById(+userID)
+    const initialUser  = isNewUser ? { id: '', name: '', email: '' } : getUserById(+userID)
 
-    const handleAddUser = () => {
-        setAddSubmitted(true)
-    }
+    useEffect(() => {
+        if (initialUser){
+            setIsNewUser(!userID);
+        }
+    }, [userID]);
 
     const handleSubmit = (values) => {
-        dispatch(userID || !addSubmitted ? updateUser(values) : addUser(values))
+        if (isNewUser){
+            dispatch(addUser(values))
+        } else {
+            dispatch(updateUser(values))
+        }
     }
 
 
@@ -39,25 +45,37 @@ function UserIdPage(props) {
             alignItems: 'center',
             gap: '15px'
         }}>
-            <Typography variant='subtitle1'>User: {userID}</Typography>
-            <Container maxWidth="sm" sx={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
+            <Typography variant='subtitle1'>User: {userID || 'New User'}</Typography>
+            <Container
+                maxWidth="sm"
+                sx={{
+                    width: '100%',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    justifyContent: 'center'
+            }}>
                 <Formik
                     initialValues={user}
                     onSubmit={handleSubmit}
                     validationSchema={UserSchema}
                 >
-                    {({errors, touched}) => (
+                    {({values, errors, touched}) => (
                         <Form>
                             <Box sx={{ mt: 1 }}>
                                 <Field
                                     name="id"
                                     as={TextField}
                                     fullWidth
-                                    label="id"
+                                    label="ID"
                                     margin="normal"
                                     variant="outlined"
                                     error={touched.id && Boolean(errors.id)}
                                     helperText={touched.id && errors.id}
+                                    onChange={(e) => {
+                                        const newId = e.target.value;
+                                        setIsNewUser(!data.some(user => user.id === newId));
+                                    }}
                                 />
 
                                 <Field
@@ -92,16 +110,13 @@ function UserIdPage(props) {
                                     mt: 2
                                 }}
                             >
-                                <Button  color={darkMode ? "secondary" : "primary"} variant={darkMode ? 'outlined' : "contained"} fullWidth type="submit">
-                                    Обновити
-                                </Button>
                                 <Button
-                                    variant="contained"
-                                    color={darkMode ? "warning" : "success"}
+                                    color={darkMode ? "secondary" : "primary"}
+                                    variant={darkMode ? 'outlined' : "contained"}
+                                    fullWidth
                                     type="submit"
-                                    onClick={handleAddUser}
                                 >
-                                    Добавити юзера
+                                    {isNewUser ? 'Добавити юзера' : 'Обновити'}
                                 </Button>
                             </Box>
                         </Form>
