@@ -32,7 +32,7 @@ function Layout(props) {
                             justifyContent='center'
                             alignItems="flex-start"
                         >
-                            <Grid size={{ xs: 12, md: 3 }}>
+                            <Grid size={{ xs: 12, md: 2 }}>
                                 <Box sx={{
                                     bgcolor: darkMode ? '#4f4f4f' : 'grey.200',
                                     p: 2,
@@ -44,7 +44,7 @@ function Layout(props) {
                                     <ButtonFetch/>
                                 </Box>
                             </Grid>
-                            <Grid  size={{ xs: 12, md: 6 }}>
+                            <Grid  size={{ xs: 12, md: 8 }}>
                                 <Box sx={{
                                     bgcolor: darkMode ? '#4f4f4f' : 'grey.200',
                                     p: 2,
@@ -55,16 +55,17 @@ function Layout(props) {
                                     <Routes/>
                                 </Box>
                             </Grid>
-                            <Grid  size={{ xs: 12, md: 3 }}>
+                            <Grid  size={{ xs: 12, md: 2 }}>
                                 <Box sx={{
                                     bgcolor: darkMode ? '#4f4f4f' : 'grey.200',
                                     p: 2,
                                     textAlign: 'center',
                                     borderRadius: '10px',
-                                    flexGrow: 1
+                                    flexGrow: 1,
+                                    width: '100%',
                                 }}
                                 >
-                                    <ButtonDelete/>
+                                    <ButtonDelete />
                                 </Box>
                             </Grid>
                         </Grid>
