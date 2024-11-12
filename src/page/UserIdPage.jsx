@@ -1,9 +1,10 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Link, useParams} from "react-router-dom";
 import {Box, Button, Container, TextField, Typography} from "@mui/material";
 import {useTheme} from "../Context.jsx";
 import {Field, Form, Formik} from "formik";
 import * as Yup from 'yup';
+import {useDispatch, useSelector} from "react-redux";
 
 const UserSchema = Yup.object().shape({
     id: Yup.string().required('Required'),
@@ -14,6 +15,9 @@ const UserSchema = Yup.object().shape({
 function UserIdPage(props) {
     const {userID} = useParams()
     const { getUserById, updateUserById, darkMode} = useTheme()
+    const [addSubmitted, setAddSubmitted] = useState(false)
+    const dispatch = useDispatch();
+    const {data} = useSelector((state) => state.data)
 
     const user = getUserById(+userID)
 
@@ -72,26 +76,31 @@ function UserIdPage(props) {
                                 />
                             </Box>
                             <Box
-                                sx={{ maxWidth: '50%', margin: '0 auto'}}
+                                sx={{
+                                    maxWidth: '50%',
+                                    margin: '0 auto',
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    gap: '20px',
+                                    mt: 2
+                                }}
                             >
-                                <Button  color={darkMode ? "secondary" : "primary"} variant={darkMode ? 'outlined' : "contained"} fullWidth type="submit" sx={{ mt: 2 }}>
+                                <Button  color={darkMode ? "secondary" : "primary"} variant={darkMode ? 'outlined' : "contained"} fullWidth type="submit">
                                     Обновити
                                 </Button>
+                                <Button
+                                    variant="contained"
+                                    color={darkMode ? "warning" : "success"}
+                                >
+                                    Добавити юзера
+                                </Button>
                             </Box>
-
                         </Form>
                     )}
                 </Formik>
             </Container>
 
-            <Button
-                sx={{ maxWidth: '50%', margin: '0 auto'}}
-                to="/home"
-                variant="contained"
-                color={darkMode ? "warning" : "success"}
-            >
-                Добавити юзера
-            </Button>
+
         </Box>
     );
 }
