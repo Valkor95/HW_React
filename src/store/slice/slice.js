@@ -1,5 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {getDataUsers} from "../../services/StorageService.js";
+import {addNewId, getDataUsers, getUserIndexById} from "../../services/StorageService.js";
 
 const initialState = {
     data: getDataUsers() || []
@@ -10,10 +10,15 @@ const exampleSlice = createSlice({
     initialState,
     reducers: {
              addUser: (state, {payload}) => {
-                 state.data.push(payload)
-             }
+                 const newId = addNewId();
+                 state.data.push({newId, ...payload})
+             },
+            updateUser: (state, {payload}) => {
+                 const index = getUserIndexById(payload.id)
+                 state.data[index] = payload;
+            }
     },
 });
 
-export const {addUser} = exampleSlice.actions;
+export const {addUser, updateUser} = exampleSlice.actions;
 export default exampleSlice.reducer

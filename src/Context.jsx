@@ -1,5 +1,5 @@
 import React, {createContext, useContext, useEffect, useState} from 'react';
-import {getDataUsers, setDataUsers} from "./services/StorageService.js";
+import {getDataUsers, getUserIndexById, setDataUsers} from "./services/StorageService.js";
 import {useNavigate} from "react-router-dom";
 
 export const ContextData = createContext('')
@@ -57,11 +57,6 @@ export function ProviderContext({children}) {
         return savedUsers.find(user => user.id === id);
     }
 
-    const getUserIndexById = (id) => {
-        const savedUsers = getDataUsers();
-        return savedUsers.findIndex(user => user.id === id);
-    }
-
     const updateUserById = (user) => {
         const savedUsers = getDataUsers();
         const index = getUserIndexById(user.id)
@@ -71,12 +66,12 @@ export function ProviderContext({children}) {
         }
 
         savedUsers[index] = user;
-        setUsers(savedUsers);
+        // setUsers(savedUsers);
         setDataUsers(savedUsers);
     }
 
     return (
-        <ContextData.Provider value={{darkMode, toggleTheme, fetchData, users, setUsers, deleteAll, deleteUserId, navigateUserId, getUserById, updateUserById}}>
+        <ContextData.Provider value={{darkMode, toggleTheme, fetchData, users, setUsers, deleteAll, deleteUserId, navigateUserId, getUserById, updateUserById, getUserIndexById}}>
             {children}
         </ContextData.Provider>
     );
