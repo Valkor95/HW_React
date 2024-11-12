@@ -4,7 +4,7 @@ import {useNavigate} from "react-router-dom";
 
 export const ContextData = createContext('')
 
-export function Provider({children}) {
+export function ProviderContext({children}) {
     const [darkMode, setDarkMode] = useState(false);
     const [users, setUsers] = useState(null)
     const navigate = useNavigate()
