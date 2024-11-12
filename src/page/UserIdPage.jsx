@@ -5,6 +5,7 @@ import {useTheme} from "../Context.jsx";
 import {Field, Form, Formik} from "formik";
 import * as Yup from 'yup';
 import {useDispatch, useSelector} from "react-redux";
+import {addUser, updateUser} from "../store/slice/slice.js";
 
 const UserSchema = Yup.object().shape({
     id: Yup.string().required('Required'),
@@ -21,9 +22,12 @@ function UserIdPage(props) {
 
     const user = getUserById(+userID)
 
-    const handleSubmit = (values) => {
-        updateUserById(values)
+    const handleAddUser = () => {
+        setAddSubmitted(true)
+    }
 
+    const handleSubmit = (values) => {
+        dispatch(userID || !addSubmitted ? updateUser(values) : addUser(values))
     }
 
 
@@ -94,6 +98,8 @@ function UserIdPage(props) {
                                 <Button
                                     variant="contained"
                                     color={darkMode ? "warning" : "success"}
+                                    type="submit"
+                                    onClick={handleAddUser}
                                 >
                                     Добавити юзера
                                 </Button>
