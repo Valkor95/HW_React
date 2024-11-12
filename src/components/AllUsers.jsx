@@ -2,12 +2,15 @@ import React from 'react';
 import {useTheme} from "../Context.jsx";
 import {Box, Typography} from "@mui/material";
 import CardUsers from "./CardUsers.jsx";
+import {useSelector} from "react-redux";
 
 function AllUsers(props) {
-    const {users, deleteUserId, navigateUserId} = useTheme();
+    const {deleteUserId, navigateUserId} = useTheme();
+
+    const {data} = useSelector((state) => state.data)
     return (
         <>
-            {users && users.length !== 0 ? (
+            {data && data.length !== 0 ? (
                 <Box
                     sx={{
                         display: 'flex',
@@ -15,7 +18,7 @@ function AllUsers(props) {
                         gap: '25px'
                     }}
                 >
-                    {users.map(user => <CardUsers key={user.id} data={user} onDelete={() => deleteUserId(user.id)} onUpdate={() => navigateUserId(user.id)}/>)}
+                    {data.map(user => <CardUsers key={user.id} data={user} onDelete={() => deleteUserId(user.id)} onUpdate={() => navigateUserId(user.id)}/>)}
                 </Box>
             ) : (
                 <Typography variant='h2'>There are no users!</Typography>

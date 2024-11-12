@@ -6,6 +6,7 @@ import {Field, Form, Formik} from "formik";
 import * as Yup from 'yup';
 import {useDispatch, useSelector} from "react-redux";
 import {addUser, updateUser} from "../store/slice/slice.js";
+import {setDataUsers} from "../services/StorageService.js";
 
 const UserSchema = Yup.object().shape({
     id: Yup.string().required('Required'),
@@ -31,8 +32,11 @@ function UserIdPage(props) {
     const handleSubmit = (values) => {
         if (isNewUser){
             dispatch(addUser(values))
+            setDataUsers([...data, values])
         } else {
+            const updatedData = data.map(user => user.id === values.id ? values : user);
             dispatch(updateUser(values))
+            setDataUsers(updatedData)
         }
     }
 
@@ -56,11 +60,12 @@ function UserIdPage(props) {
                     justifyContent: 'center'
             }}>
                 <Formik
-                    initialValues={user}
+                    initialValues={initialUser}
                     onSubmit={handleSubmit}
                     validationSchema={UserSchema}
+                    enableReinitialize
                 >
-                    {({values, errors, touched}) => (
+                    {({values, errors, touched, setFieldValue }) => (
                         <Form>
                             <Box sx={{ mt: 1 }}>
                                 <Field
@@ -74,6 +79,7 @@ function UserIdPage(props) {
                                     helperText={touched.id && errors.id}
                                     onChange={(e) => {
                                         const newId = e.target.value;
+                                        setFieldValue("id", newId);
                                         setIsNewUser(!data.some(user => user.id === newId));
                                     }}
                                 />
