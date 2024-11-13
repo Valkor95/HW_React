@@ -4,6 +4,7 @@ import {useTheme} from "../Context.jsx";
 import {NavLink} from "react-router-dom";
 import RestoreIcon from "@mui/icons-material/Restore";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
+import CreateNewUser from "../page/CreateNewUser.jsx";
 
 function Header(props) {
     const {darkMode, toggleTheme} = useTheme();
@@ -36,9 +37,18 @@ function Header(props) {
                                     },
                                 }}
                             />
+                            <BottomNavigationAction
+                                component={NavLink}
+                                to='/addNewUser'
+                                label="User+"
+                                icon={<RestoreIcon />}
+                                sx={{
+                                    '&:focus': {
+                                        color: darkMode ? '#A44FB3FF' : '',
+                                    },
+                                }}
+                            />
                         </BottomNavigation>
-
-
                     </Box>
 
                     <Box>
