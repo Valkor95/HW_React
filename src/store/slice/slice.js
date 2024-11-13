@@ -10,12 +10,11 @@ const exampleSlice = createSlice({
     initialState,
     reducers: {
              addUser: (state, {payload}) => {
-                 const newId = addNewId();
-                 state.data.push({newId, ...payload})
+                return [...state.data, payload]
              },
             updateUser: (state, {payload}) => {
                  const index = getUserIndexById(payload.id)
-                 state.data[index] = payload;
+                 state.data[index] = {...state.data[index], ...payload}
             }
     },
 });

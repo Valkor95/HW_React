@@ -17,30 +17,16 @@ const UserSchema = Yup.object().shape({
 function UserIdPage(props) {
     const {userID} = useParams()
     const { getUserById, updateUserById, darkMode} = useTheme()
-    const [isNewUser, setIsNewUser] = useState(!userID)
     const dispatch = useDispatch();
     const {data} = useSelector((state) => state.data)
 
-    const initialUser  = isNewUser ? { id: '', name: '', email: '' } : getUserById(+userID)
-
-    useEffect(() => {
-        if (initialUser){
-            setIsNewUser(!userID);
-        }
-    }, [userID]);
 
     const handleSubmit = (values) => {
-        if (isNewUser){
-            dispatch(addUser(values))
-            setDataUsers([...data, values])
-        } else {
-            const updatedData = data.map(user => user.id === values.id ? values : user);
+            const updatedData = data.map(user => user.id === values.id);
             dispatch(updateUser(values))
             setDataUsers(updatedData)
-        }
     }
-
-
+    
     return (
         <Box sx={{
             display: 'flex',
