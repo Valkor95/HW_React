@@ -10,7 +10,7 @@ function AllUsers(props) {
 
     return (
         <>
-            {data && data.length !== 0 ? (
+            {data ? (
                 <Box
                     sx={{
                         display: 'flex',
