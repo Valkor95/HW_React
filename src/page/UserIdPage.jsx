@@ -20,13 +20,11 @@ function UserIdPage(props) {
     const dispatch = useDispatch();
     const {data} = useSelector((state) => state.data)
 
-    const initialUser = getUserById(+userID)
+    const {id, name, email} = getUserById(+userID)
 
     const handleSubmit = (values) => {
-            const updatedData = data.map(user => user.id === values.id);
-            dispatch(updateUser(updatedData))
-            updateUserById(updatedData)
-        console.log(updatedData)
+            dispatch(updateUser(values))
+            updateUserById(values)
     }
     
     return (
@@ -48,7 +46,7 @@ function UserIdPage(props) {
                     justifyContent: 'center'
             }}>
                 <Formik
-                    initialValues={initialUser}
+                    initialValues={{id, name, email}}
                     onSubmit={handleSubmit}
                     validationSchema={UserSchema}
                     enableReinitialize
@@ -56,22 +54,6 @@ function UserIdPage(props) {
                     {({values, errors, touched, setFieldValue }) => (
                         <Form>
                             <Box sx={{ mt: 1 }}>
-                                <Field
-                                    name="id"
-                                    as={TextField}
-                                    fullWidth
-                                    label="ID"
-                                    margin="normal"
-                                    variant="outlined"
-                                    error={touched.id && Boolean(errors.id)}
-                                    helperText={touched.id && errors.id}
-                                    onChange={(e) => {
-                                        const newId = e.target.value;
-                                        setFieldValue("id", newId);
-                                        setIsNewUser(!data.some(user => user.id === newId));
-                                    }}
-                                />
-
                                 <Field
                                     name="name"
                                     as={TextField}

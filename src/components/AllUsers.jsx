@@ -6,8 +6,8 @@ import {useSelector} from "react-redux";
 
 function AllUsers(props) {
     const {deleteUserId, navigateUserId} = useTheme();
-
     const {data} = useSelector((state) => state.data)
+
     return (
         <>
             {data && data.length !== 0 ? (
