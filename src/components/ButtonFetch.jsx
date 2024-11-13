@@ -14,7 +14,7 @@ function ButtonFetch(props) {
         try{
             const quantity = +prompt('Скількі юзерів ви бажаєте викликати? (1-10)')
             if (quantity >= 1 && quantity <= 10) {
-                dispatch(fetchUsers(quantity)); // Используем асинхронное действие для загрузки пользователей
+                dispatch(fetchUsers(quantity));
             } else {
                 alert('Введіть коректну кількість (від 1 до 10)');
             }

@@ -5,6 +5,7 @@ import {addUser, updateUser} from "../store/slice/slice.js";
 import {Box, Button, Container, TextField, Typography} from "@mui/material";
 import {Field, Form, Formik} from "formik";
 import * as Yup from "yup";
+import {setDataUsers} from "../services/StorageService.js";
 
 const UserSchema = Yup.object().shape({
     id: Yup.string().required('Required'),
@@ -16,10 +17,10 @@ function CreateNewUser(props) {
     const dispatch = useDispatch();
     const {data} = useSelector((state) => state.data)
 
-    const initialValues = {id: '', name: '', email: ''}
+    const initialValues = {id: 0, name: '', email: ''}
     const handleSubmit = (values) => {
         dispatch(addUser(values))
-        updateUserById(values)
+        setDataUsers(values)
     }
 
     return (
