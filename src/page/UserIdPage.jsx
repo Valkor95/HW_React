@@ -20,11 +20,13 @@ function UserIdPage(props) {
     const dispatch = useDispatch();
     const {data} = useSelector((state) => state.data)
 
+    const initialUser = getUserById(+userID)
 
     const handleSubmit = (values) => {
             const updatedData = data.map(user => user.id === values.id);
-            dispatch(updateUser(values))
-            setDataUsers(updatedData)
+            dispatch(updateUser(updatedData))
+            updateUserById(updatedData)
+        console.log(updatedData)
     }
     
     return (
@@ -108,7 +110,7 @@ function UserIdPage(props) {
                                     fullWidth
                                     type="submit"
                                 >
-                                    {isNewUser ? 'Добавити юзера' : 'Обновити'}
+                                    Обновити
                                 </Button>
                             </Box>
                         </Form>
