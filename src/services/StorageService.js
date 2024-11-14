@@ -26,3 +26,7 @@ export function newIdUser(){
         : 1;
     return newId
 }
+
+export const navigateUserId = (navigate, dataId) => {
+    navigate(`/${dataId}`)
+}

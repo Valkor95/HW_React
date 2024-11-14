@@ -6,7 +6,6 @@ export const ContextData = createContext('')
 
 export function ProviderContext({children}) {
     const [darkMode, setDarkMode] = useState(false);
-    const navigate = useNavigate()
     const toggleTheme = () => {
         setDarkMode(prevState => !prevState)
     }
@@ -22,10 +21,6 @@ export function ProviderContext({children}) {
         const newUsers = savedUsers.filter(user => user.id !== dataId);
         setUsers(newUsers);
         setDataUsers(newUsers);
-    }
-
-    const navigateUserId = (dataId) => {
-        navigate(`/${dataId}`)
     }
 
     const getUserById = (id) => {
@@ -46,7 +41,7 @@ export function ProviderContext({children}) {
     }
 
     return (
-        <ContextData.Provider value={{darkMode, toggleTheme, deleteAll, deleteUserId, navigateUserId, getUserById, updateUserById, getUserIndexById}}>
+        <ContextData.Provider value={{darkMode, toggleTheme, deleteAll, deleteUserId, getUserById, updateUserById, getUserIndexById}}>
             {children}
         </ContextData.Provider>
     );
