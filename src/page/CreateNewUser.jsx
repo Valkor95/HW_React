@@ -1,26 +1,30 @@
 import React from 'react';
 import {useTheme} from "../Context.jsx";
 import {useDispatch, useSelector} from "react-redux";
-import {addUser, updateUser} from "../store/slice/slice.js";
+import {addUser} from "../store/slice/slice.js";
 import {Box, Button, Container, TextField, Typography} from "@mui/material";
 import {Field, Form, Formik} from "formik";
 import * as Yup from "yup";
-import {setDataUsers} from "../services/StorageService.js";
+import {getDataUsers, newIdUser, setDataUsers} from "../services/StorageService.js";
 
 const UserSchema = Yup.object().shape({
-    id: Yup.string().required('Required'),
     name: Yup.string().required('Required'),
     email: Yup.string().email().required('Required')
 })
 function CreateNewUser(props) {
-    const { updateUserById, darkMode} = useTheme()
+    const { darkMode} = useTheme()
     const dispatch = useDispatch();
     const {data} = useSelector((state) => state.data)
 
-    const initialValues = {id: 0, name: '', email: ''}
+    const initialValues = {name: '', email: ''}
     const handleSubmit = (values) => {
+        console.log(values)
         dispatch(addUser(values))
-        setDataUsers(values)
+        const newId = newIdUser();
+        const newUser = { id: newId, ...values };
+        const currentData = getDataUsers() || [];
+        const updatedData = [...currentData, newUser];
+        setDataUsers(updatedData);
     }
 
     return (
@@ -50,17 +54,6 @@ function CreateNewUser(props) {
                     {({values, errors, touched, setFieldValue }) => (
                         <Form>
                             <Box sx={{ mt: 1 }}>
-                                <Field
-                                    name="id"
-                                    as={TextField}
-                                    fullWidth
-                                    label="ID"
-                                    margin="normal"
-                                    variant="outlined"
-                                    error={touched.id && Boolean(errors.id)}
-                                    helperText={touched.id && errors.id}
-                                />
-
                                 <Field
                                     name="name"
                                     as={TextField}

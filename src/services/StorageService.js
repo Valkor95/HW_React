@@ -18,3 +18,11 @@ export const getUserIndexById = (id) => {
 export function setDataUsers(data){
     localStorage.setItem('users', JSON.stringify(data))
 }
+
+export function newIdUser(){
+    const currentData = getDataUsers() || [];
+    const newId = currentData.length > 0
+        ? Math.max(...currentData.map(user => user.id)) + 1
+        : 1;
+    return newId
+}

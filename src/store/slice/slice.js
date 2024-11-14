@@ -1,5 +1,5 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
-import {addNewId, getDataUsers, getUserIndexById, setDataUsers} from "../../services/StorageService.js";
+import {addNewId, getDataUsers, getUserIndexById, newIdUser, setDataUsers} from "../../services/StorageService.js";
 
 export const fetchUsers = createAsyncThunk(
     'users/fetchUsers',
@@ -21,7 +21,9 @@ const exampleSlice = createSlice({
     initialState,
     reducers: {
              addUser: (state, {payload}) => {
-                 state.data.push(payload);
+                 const newId = newIdUser();
+                 const newUser = { id: newId, ...payload };
+                 state.data.push(newUser);
              },
             updateUser: (state, {payload}) => {
                  const index = getUserIndexById(payload.id);
