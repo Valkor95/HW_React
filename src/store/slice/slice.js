@@ -30,7 +30,11 @@ const exampleSlice = createSlice({
                  if (index !== -1){
                      state.data[index] = {...state.data[index], ...payload}
                  }
-            }
+            },
+            deleteUser: (state, { payload }) => {
+            state.data = state.data.filter(user => user.id !== payload);
+            setDataUsers(state.data);
+        }
     },
     extraReducers: (builder) => {
         builder
@@ -51,5 +55,5 @@ const exampleSlice = createSlice({
     }
 });
 
-export const {addUser, updateUser} = exampleSlice.actions;
+export const {addUser, updateUser, deleteUser} = exampleSlice.actions;
 export default exampleSlice.reducer

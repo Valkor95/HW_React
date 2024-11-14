@@ -1,8 +1,10 @@
 import React from 'react';
 import {Box, Button, Stack, Typography} from "@mui/material";
 import {useTheme} from "../Context.jsx";
+import {useDispatch} from "react-redux";
+import {deleteUser} from "../store/slice/slice.js";
 
-function CardUsers({ data, onDelete, onUpdate }) {
+function CardUsers({ data, onUpdate, onDelete }) {
     const {darkMode} = useTheme()
     return (
         <>
