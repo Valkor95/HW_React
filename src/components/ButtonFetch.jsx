@@ -30,7 +30,7 @@ function ButtonFetch(props) {
         } else {
             fetchData()
         }
-    }, [dispatch]);
+    }, []);
 
 
     return (

@@ -10,19 +10,6 @@ export function ProviderContext({children}) {
         setDarkMode(prevState => !prevState)
     }
 
-
-    const deleteAll = () => {
-        localStorage.clear()
-        setUsers(null)
-    }
-
-    const deleteUserId = (dataId) => {
-        const savedUsers = getDataUsers();
-        const newUsers = savedUsers.filter(user => user.id !== dataId);
-        setUsers(newUsers);
-        setDataUsers(newUsers);
-    }
-
     const getUserById = (id) => {
         const savedUsers = getDataUsers();
         return savedUsers.find(user => user.id === id);
@@ -41,7 +28,7 @@ export function ProviderContext({children}) {
     }
 
     return (
-        <ContextData.Provider value={{darkMode, toggleTheme, deleteAll, deleteUserId, getUserById, updateUserById, getUserIndexById}}>
+        <ContextData.Provider value={{darkMode, toggleTheme, getUserById, updateUserById, getUserIndexById}}>
             {children}
         </ContextData.Provider>
     );
