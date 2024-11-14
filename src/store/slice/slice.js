@@ -38,8 +38,9 @@ const exampleSlice = createSlice({
             })
             .addCase(fetchUsers.fulfilled, (state, { payload }) => {
                 state.loading = false;
-                state.data = payload;
-                setDataUsers(payload);
+                const filteredData = payload.map(({ id, name, email }) => ({ id, name, email }));
+                state.data = filteredData;
+                setDataUsers(filteredData);
             })
             .addCase(fetchUsers.rejected, (state, { error }) => {
                 state.loading = false;
