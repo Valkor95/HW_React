@@ -6,7 +6,17 @@ import DataCard from "../components/DataCard.jsx";
 
 function MainPage(props) {
     return (
-        <Box>
+        <Box
+            sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                minHeight: "100vh",
+                gap: 2,
+                padding: 2,
+            }}
+        >
             <ContainerImg/>
             <ButtonFetch/>
             <DataCard/>
