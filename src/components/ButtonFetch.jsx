@@ -1,8 +1,15 @@
 import React from 'react';
+import {Button} from "@mui/material";
 
 function ButtonFetch(props) {
     return (
-        <div></div>
+        <Button
+            variant="contained"
+            color="secondary"
+            onClick={() => console.log('Fetching data...')}
+        >
+            Fetch Data
+        </Button>
     );
 }
 
