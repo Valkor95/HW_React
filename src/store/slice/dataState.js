@@ -8,18 +8,19 @@ const dataState = createSlice({
     reducers: {
         saveData: (state, {payload}) => {
             state.push(payload)
+            console.log(payload)
         }
     }
 })
 
-export const {saveData} = dataState.actions;
+
 
 export const getData = () => dispatch => {
-    fetch('https://swapi.py4e.com/api/people/1')
+    fetch('https://swapi.dev/api/people/1/')
         .then(res => res.json())
         .then(result => {
             dispatch(saveData(result))
         })
 }
-
+export const {saveData} = dataState.actions;
 export default dataState.reducer
