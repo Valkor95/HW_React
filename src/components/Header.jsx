@@ -48,6 +48,17 @@ function Header(props) {
                                     },
                                 }}
                             />
+                            <BottomNavigationAction
+                                component={NavLink}
+                                to='/counter'
+                                label="Counter"
+                                icon={<RestoreIcon />}
+                                sx={{
+                                    '&:focus': {
+                                        color: darkMode ? '#A44FB3FF' : '',
+                                    },
+                                }}
+                            />
                         </BottomNavigation>
                     </Box>
 
