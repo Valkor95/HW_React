@@ -3,7 +3,7 @@ import {Box} from "@mui/material";
 import ContainerImg from "../components/ContainerImg.jsx";
 import ButtonFetch from "../components/ButtonFetch.jsx";
 import DataCard from "../components/DataCard.jsx";
-
+import img from '../assets/img/sw.png';
 function MainPage(props) {
     return (
         <Box
@@ -17,7 +17,12 @@ function MainPage(props) {
                 padding: 2,
             }}
         >
-            <ContainerImg/>
+            <ContainerImg
+                src={img}
+                alt="SW"
+                width="400px"
+                height="400px"
+            />
             <ButtonFetch/>
             <DataCard/>
         </Box>
