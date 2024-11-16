@@ -1,6 +1,8 @@
 import React from 'react';
 import {createTheme, CssBaseline, ThemeProvider} from "@mui/material";
 import MainPage from "./pages/MainPage.jsx";
+import {BrowserRouter} from "react-router-dom";
+import Routers from "./routes/Routers.jsx";
 
 function App(props) {
     const darkTheme = createTheme({
@@ -10,10 +12,13 @@ function App(props) {
     });
 
     return (
-        <ThemeProvider theme={darkTheme}>
-            <CssBaseline/>
-            <MainPage/>
-        </ThemeProvider>
+        <BrowserRouter>
+            <ThemeProvider theme={darkTheme}>
+                <CssBaseline/>
+                <Routers/>
+            </ThemeProvider>
+        </BrowserRouter>
+
     );
 }
 
