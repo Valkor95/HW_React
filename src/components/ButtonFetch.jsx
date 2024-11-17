@@ -5,25 +5,20 @@ import {getData} from "../store/slice/dataState.js";
 
 function ButtonFetch(props) {
     const dispatch = useDispatch()
-    const data = useSelector((state) => state.data)
 
     const handleFetch = () => {
         dispatch(getData())
     }
 
-    useEffect(() => {
-        handleFetch();
-    }, [dispatch]);
-
-    useEffect(() => {
-        console.log(data)
-    }, [data]);
+    // useEffect(() => {
+    //     handleFetch();
+    // }, [dispatch]);
 
     return (
         <Button
             variant="contained"
             color="secondary"
-            onClick={handleFetch}
+            onClick={() => handleFetch()}
         >
             Fetch Data
         </Button>

@@ -8,12 +8,9 @@ const dataState = createSlice({
     reducers: {
         saveData: (state, {payload}) => {
             state.push(payload)
-            console.log(payload)
         }
     }
 })
-
-
 
 export const getData = () => dispatch => {
     fetch('https://swapi.dev/api/people/1/')
