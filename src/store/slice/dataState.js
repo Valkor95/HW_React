@@ -12,12 +12,14 @@ const dataState = createSlice({
     }
 })
 
+let id = 1;
 export const getData = () => dispatch => {
-    fetch('https://swapi.dev/api/people/1/')
+    fetch(`https://swapi.dev/api/people/${id}`)
         .then(res => res.json())
         .then(result => {
             dispatch(saveData(result))
         })
+    id++
 }
 export const {saveData} = dataState.actions;
 export default dataState.reducer
