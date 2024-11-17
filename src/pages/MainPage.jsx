@@ -1,31 +1,36 @@
 import React from 'react';
-import {Box} from "@mui/material";
+import Grid from "@mui/material/Grid2";
 import ContainerImg from "../components/ContainerImg.jsx";
 import ButtonFetch from "../components/ButtonFetch.jsx";
 import DataCard from "../components/DataCard.jsx";
 import img from '../assets/img/sw.png';
 function MainPage(props) {
     return (
-        <Box
+        <Grid
+            container
+            spacing={2}
+            direction='column'
+            justifyContent="center"
+            alignItems="center"
             sx={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                justifyContent: "center",
                 minHeight: "100vh",
-                gap: 2,
                 padding: 2,
             }}
         >
-            <ContainerImg
-                src={img}
-                alt="SW"
-                width="400px"
-                height="400px"
-            />
-            <ButtonFetch/>
-            <DataCard/>
-        </Box>
+            <Grid item xs={12} sm={6} md={4}>
+                <ContainerImg
+                    src={img}
+                    alt="SW"
+                />
+            </Grid>
+
+            <Grid item xs={12} sm={6} md={4}>
+                <ButtonFetch />
+            </Grid>
+            <Grid item xs={12} sm={6} md={4}>
+                <DataCard />
+            </Grid>
+        </Grid>
     );
 }
 

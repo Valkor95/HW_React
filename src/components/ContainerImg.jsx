@@ -1,16 +1,8 @@
 import React from 'react';
 import {Box} from "@mui/material";
 
-function ContainerImg({src, alt, width, height}) {
+function ContainerImg({src, alt, width = 'auto', height = 'auto', maxWidth = '400px'}) {
     return (
-        <Box
-            sx={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                height: '100vh',
-            }}
-        >
             <Box
                 component="img"
                 src={src}
@@ -18,12 +10,12 @@ function ContainerImg({src, alt, width, height}) {
                 sx={{
                     width: width,
                     height: height,
-                    objectFit: 'cover',
+                    // objectFit: 'cover',
+                    maxWidth: maxWidth,
                     borderRadius: '8px',
                     boxShadow: '0 4px 10px rgba(0, 0, 0, 0.1)',
                 }}
             />
-        </Box>
     );
 }
 
