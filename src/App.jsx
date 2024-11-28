@@ -37,6 +37,7 @@ const App = () => {
                     </div>
                 )}
             </div>
+            <button>VIEW MORE CATS</button>
         </div>
     );
 };
