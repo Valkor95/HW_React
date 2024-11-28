@@ -9,7 +9,7 @@ const store = configureStore({
     reducer: {
         cats: catsReducer,
     },
-    middleware: [saga]
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(saga),
 });
 saga.run(catSaga);
 
