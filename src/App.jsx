@@ -7,12 +7,13 @@ import {Container} from "@mui/material";
 const App = () => {
     return (
         <div>
+            <Navigation/>
             <Container sx={{
                 display: 'flex',
                 flexDirection: 'column',
+                alignItems: 'center',
                 gap: '20px'
             }}>
-                <Navigation/>
                 <Routers/>
             </Container>
 
