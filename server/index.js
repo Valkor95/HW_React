@@ -7,6 +7,7 @@ import path from 'path';
 const app = express();
 const PORT = 3000;
 app.use(cors());
+app.use(bodyParser.json());
 
 app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
@@ -15,20 +16,16 @@ app.listen(PORT, () => {
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-app.use('/static', express.static('publick'));
-app.use(bodyParser.json());
+app.use('/static', express.static(path.join(__dirname, '../publick')));
 
-let users = [];
-
-app.get('/', (req, res) => {
-    const imagePath = path.join(__dirname, '../publick/CV.jpg');
+const sendImage = (filePath) => (req, res) => {
+    const imagePath = path.join(__dirname, '../publick', filePath);
     res.sendFile(imagePath)
-});
+};
 
-app.get('/swapi', (req, res) => {
-    const imagePath = path.join(__dirname, '../publick/SWimg.jpg');
-    res.sendFile(imagePath)
-});
+app.get('/', sendImage('CV.jpg'));
+app.get('/swapi', sendImage('SWimg.jpg'));
+
 
 app.post('/users', (req, res) => {
     const newUser = { id: Date.now(), ...req.body };
