@@ -25,6 +25,11 @@ app.get('/', (req, res) => {
     res.sendFile(imagePath)
 });
 
+app.get('/swapi', (req, res) => {
+    const imagePath = path.join(__dirname, '../publick/SWimg.jpg');
+    res.sendFile(imagePath)
+});
+
 app.post('/users', (req, res) => {
     const newUser = { id: Date.now(), ...req.body };
     users.push(newUser);
