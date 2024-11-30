@@ -14,14 +14,14 @@ app.listen(PORT, () => {
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-app.use('/static', express.static('public'));
+app.use('/static', express.static('publick'));
 app.use(cors());
 app.use(bodyParser.json());
 
 let users = [];
 
 app.get('/', (req, res) => {
-    const imagePath = path.join(__dirname, 'publick/CV.jpg');
+    const imagePath = path.join(__dirname, '../publick/CV.jpg');
     res.sendFile(imagePath)
 });
 
