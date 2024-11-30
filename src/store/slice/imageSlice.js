@@ -3,17 +3,25 @@ import {createSlice} from "@reduxjs/toolkit";
 const imageSlice = createSlice({
     name: 'image',
     initialState: {
-        url: '',
+        urlCV: '',
+        urlSW: '',
         loading: false,
         error: null,
     },
     reducers: {
-        fetchImageRequest: (state) => {
+        fetchImageCVRequest: (state) => {
             state.loading = true;
         },
-        fetchImageSuccess: (state, action) => {
+        fetchImageCVSuccess: (state, action) => {
             state.loading = false;
-            state.url = action.payload;
+            state.urlCV = action.payload;
+        },
+        fetchImageSWRequest: (state) => {
+            state.loading = true;
+        },
+        fetchImageSWSuccess: (state, action) => {
+            state.loading = false;
+            state.urlSW = action.payload;
         },
         fetchImageFailure: (state, action) => {
             state.loading = false;
@@ -22,5 +30,5 @@ const imageSlice = createSlice({
     },
 });
 
-export const {fetchImageRequest, fetchImageSuccess, fetchImageFailure} = imageSlice.actions
+export const {fetchImageCVRequest, fetchImageCVSuccess, fetchImageSWRequest, fetchImageSWSuccess, fetchImageFailure} = imageSlice.actions
 export default imageSlice.reducer;

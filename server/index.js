@@ -24,7 +24,7 @@ const sendImage = (filePath) => (req, res) => {
 };
 
 app.get('/', sendImage('CV.jpg'));
-app.get('/swapi', sendImage('SWimg.jpg'));
+app.get('/swapi', sendImage('SWimg.png'));
 
 
 app.post('/users', (req, res) => {
