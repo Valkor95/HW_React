@@ -10,7 +10,7 @@ const store = configureStore({
     reducer: {
         image: imageReducer,
     },
-    middleware: [saga],
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(saga)
 })
 
 saga.run(rootSaga)

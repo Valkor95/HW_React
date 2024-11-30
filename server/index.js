@@ -6,6 +6,7 @@ import path from 'path';
 
 const app = express();
 const PORT = 3000;
+app.use(cors());
 
 app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
@@ -15,7 +16,6 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 app.use('/static', express.static('publick'));
-app.use(cors());
 app.use(bodyParser.json());
 
 let users = [];
