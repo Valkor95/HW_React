@@ -16,7 +16,7 @@ function ImageComponent(props) {
                 {loading ? 'Loading...' : 'Fetch Image'}
             </button>
             {error && <p>Error: {error}</p>}
-            {url && <img src={url} alt="CV" style={{ width: '300px' }} />}
+            {url && <img src={url} alt="CV" style={{ width: '600px' }} />}
         </div>
     );
 }
