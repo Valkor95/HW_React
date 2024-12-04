@@ -14,7 +14,7 @@ const SWslice = createSlice({
         },
         fetchSWDataSuccess: (state, action) => {
             state.loading = false;
-            state.data.push(action.payload);
+            state.data = action.payload;
         },
         fetchSWDataFailure: (state, action) => {
             state.loading = false;
