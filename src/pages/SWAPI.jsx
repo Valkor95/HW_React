@@ -3,6 +3,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {fetchImageSWRequest} from "../store/slice/imageSlice.js";
 import {Box} from "@mui/material";
 import {fetchSWDataRequest} from "../store/slice/SWstate.js";
+import DataCard from "../components/DataCard.jsx";
 
 function Swapi(props) {
     const {urlSW, loading, error } = useSelector((state) => state.image)
@@ -32,8 +33,7 @@ function Swapi(props) {
 
             {!SWloading && data && (
                 <Box>
-                    <h2>Star Wars Data Loaded:</h2>
-
+                    <DataCard/>
                 </Box>
             )}
 
