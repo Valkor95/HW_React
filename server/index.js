@@ -27,17 +27,17 @@ app.get('/', sendImage('CV.jpg'));
 app.get('/swapi', sendImage('SWimg.png'));
 
 
-app.post('/users', (req, res) => {
+app.post('/todolist', (req, res) => {
     const newUser = { id: Date.now(), ...req.body };
     users.push(newUser);
     res.status(201).json(newUser);
 });
 
-app.get('/users', (req, res) => {
+app.get('/todolist', (req, res) => {
     res.json(users);
 });
 
-app.get('/users/:id', (req, res) => {
+app.get('/todolist/:id', (req, res) => {
     const user = users.find(u => u.id === parseInt(req.params.id));
     if (!user) {
         return res.status(404).json({ message: 'User not found' });
@@ -45,7 +45,7 @@ app.get('/users/:id', (req, res) => {
     res.json(user);
 });
 
-app.put('/users/:id', (req, res) => {
+app.put('/todolist/:id', (req, res) => {
     const userIndex = users.findIndex(u => u.id === parseInt(req.params.id));
     if (userIndex === -1) {
         return res.status(404).json({ message: 'User not found' });
@@ -54,7 +54,7 @@ app.put('/users/:id', (req, res) => {
     res.json(users[userIndex]);
 });
 
-app.delete('/users/:id', (req, res) => {
+app.delete('/todolist/:id', (req, res) => {
     const userIndex = users.findIndex(u => u.id === parseInt(req.params.id));
     if (userIndex === -1) {
         return res.status(404).json({ message: 'User not found' });
