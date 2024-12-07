@@ -1,9 +1,17 @@
 import React from 'react';
 import {useDispatch} from "react-redux";
 import {useFormik} from "formik";
+import * as Yup from 'yup';
 import {createTodoRequest, updateTodoRequest} from "../store/slice/todosSlice.js";
 import {Box, Button, TextField} from "@mui/material";
 import {useNavigate} from "react-router-dom";
+
+const validationSchema = Yup.object({
+    title: Yup.string()
+        .matches(/^[a-zA-Z0-9 ]*$/, "Можно вводить только буквы, цифры и пробелы")
+        .required("Поле не может быть пустым")
+        .min(3, "Минимум 3 символа")
+});
 
 function TodoForm({ initialValues = { title: '' }, isEdit = false  }) {
     const dispatch = useDispatch();
