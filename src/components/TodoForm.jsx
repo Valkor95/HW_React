@@ -19,6 +19,7 @@ function TodoForm({ initialValues = { title: '' }, isEdit = false  }) {
 
     const formik = useFormik({
         initialValues,
+        validationSchema,
         onSubmit: (values, { resetForm }) => {
             if (isEdit) {
                 dispatch(updateTodoRequest(values));
@@ -40,12 +41,16 @@ function TodoForm({ initialValues = { title: '' }, isEdit = false  }) {
                 label="Введите название задачи"
                 value={formik.values.title}
                 onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
                 fullWidth
+                error={formik.touched.title && Boolean(formik.errors.title)}
+                helperText={formik.touched.title && formik.errors.title}
             />
             <Button
                 type="submit"
                 variant="contained"
                 color="primary"
+                disabled={!formik.isValid || formik.isSubmitting}
             >
                 {isEdit ? 'Обновить' : 'Добавить'}
             </Button>
