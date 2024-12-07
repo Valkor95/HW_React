@@ -19,6 +19,17 @@ const todosSlice = createSlice({
             state.loading = false;
             state.error = action.payload;
         },
+        createTodoRequest: (state) => {
+            state.loading = true;
+        },
+        createTodoSuccess: (state, action) => {
+            state.todos.push(action.payload);
+            state.loading = false;
+        },
+        createTodoFailure: (state, action) => {
+            state.error = action.payload;
+            state.loading = false;
+        },
         updateTodoRequest: (state) => { state.loading = true; },
         updateTodoSuccess: (state, action) => {
             state.loading = false;
@@ -46,7 +57,8 @@ const todosSlice = createSlice({
 export const {
     fetchTodosRequest, fetchTodosSuccess, fetchTodosFailure,
     updateTodoRequest, updateTodoSuccess, updateTodoFailure,
-    deleteTodoRequest, deleteTodoSuccess, deleteTodoFailure
+    deleteTodoRequest, deleteTodoSuccess, deleteTodoFailure,
+    createTodoRequest, createTodoSuccess, createTodoFailure
 } = todosSlice.actions;
 
 export default todosSlice.reducer;

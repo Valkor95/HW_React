@@ -11,6 +11,15 @@ export const getTodos = async () => {
     }
 };
 
+export const createTodo = async (newTodo) => {
+    try {
+        const response = await axios.post(BASE_URL, newTodo);
+        return response.data;
+    } catch (error) {
+        throw new Error('Ошибка при добавлении todos');
+    }
+};
+
 export const updateTodo = async (todo) => {
     try {
         const response = await axios.put(`${BASE_URL}/${todo.id}`, todo);

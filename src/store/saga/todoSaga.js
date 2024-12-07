@@ -3,10 +3,10 @@ import { call, put, takeLatest, all} from 'redux-saga/effects';
 import {
     fetchTodosRequest, fetchTodosSuccess, fetchTodosFailure,
     updateTodoRequest, updateTodoSuccess, updateTodoFailure,
-    deleteTodoRequest, deleteTodoSuccess, deleteTodoFailure
+    deleteTodoRequest, deleteTodoSuccess, deleteTodoFailure, createTodoSuccess, createTodoFailure, createTodoRequest
 } from '../slice/todosSlice.js'
 
-import { getTodos, updateTodo, deleteTodo } from '../api/api.js'
+import { getTodos, updateTodo, deleteTodo, createTodo } from '../api/api.js'
 
 function* fetchTodosSaga() {
     try {
@@ -14,6 +14,15 @@ function* fetchTodosSaga() {
         yield put(fetchTodosSuccess(todos));
     } catch (error) {
         yield put(fetchTodosFailure(error.message));
+    }
+}
+
+function* createTodoSaga(action) {
+    try {
+        const response = yield call(createTodo, action.payload);
+        yield put(createTodoSuccess(response.data));
+    } catch (error) {
+        yield put(createTodoFailure(error.message));
     }
 }
 
@@ -38,6 +47,7 @@ function* deleteTodoSaga(action) {
 export function* watchFetchTodosSaga(){
     yield all([
         takeLatest(fetchTodosRequest.type, fetchTodosSaga),
+        takeLatest(createTodoRequest.type, createTodoSaga),
         takeLatest(updateTodoRequest.type, updateTodoSaga),
         takeLatest(deleteTodoRequest.type, deleteTodoSaga),
     ])
