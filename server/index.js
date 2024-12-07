@@ -28,15 +28,17 @@ app.get('/swapi', sendImage('SWimg.png'));
 
 let users = []
 
+
+app.get('/todolist', (req, res) => {
+    res.json(users);
+});
+
 app.post('/todolist', (req, res) => {
     const newUser = { id: Date.now(), ...req.body };
     users.push(newUser);
     res.status(201).json(newUser);
 });
 
-app.get('/todolist', (req, res) => {
-    res.json(users);
-});
 
 app.get('/todolist/:id', (req, res) => {
     const user = users.find(u => u.id === parseInt(req.params.id));

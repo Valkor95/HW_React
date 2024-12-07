@@ -14,7 +14,7 @@ function EditTodo(props) {
         <div>
             <Typography variant="h5" gutterBottom>Редактирование задачи</Typography>
 
-            <TodoForm initialValues={todo}/>
+            <TodoForm initialValues={todo} isEdit={true}/>
         </div>
     );
 }

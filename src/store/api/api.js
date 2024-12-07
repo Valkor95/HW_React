@@ -16,7 +16,7 @@ export const createTodo = async (newTodo) => {
         const response = await axios.post(BASE_URL, newTodo);
         return response.data;
     } catch (error) {
-        throw new Error('Ошибка при добавлении todos');
+        throw new Error(`Ошибка при добавлении todos: ${error.message}`);
     }
 };
 

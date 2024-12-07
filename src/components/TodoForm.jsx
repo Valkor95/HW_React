@@ -1,16 +1,20 @@
 import React from 'react';
 import {useDispatch} from "react-redux";
 import {useFormik} from "formik";
-import {updateTodoRequest} from "../store/slice/todosSlice.js";
+import {createTodoRequest, updateTodoRequest} from "../store/slice/todosSlice.js";
 import {Box, Button, TextField} from "@mui/material";
 
-function TodoForm({ initialValues = { title: '' } }) {
+function TodoForm({ initialValues = { title: '' }, isEdit = false  }) {
     const dispatch = useDispatch();
 
     const formik = useFormik({
         initialValues,
         onSubmit: (values, { resetForm }) => {
-            dispatch(updateTodoRequest(values));
+            if (isEdit) {
+                dispatch(updateTodoRequest(values)); // Если редактируем задачу, отправляем update
+            } else {
+                dispatch(createTodoRequest(values)); // Если создаем новую задачу, отправляем create
+            }
             resetForm();
         },
     });
@@ -32,7 +36,7 @@ function TodoForm({ initialValues = { title: '' } }) {
                 variant="contained"
                 color="primary"
             >
-                Добавить
+                {isEdit ? 'Обновить' : 'Добавить'}
             </Button>
         </Box>
     );
