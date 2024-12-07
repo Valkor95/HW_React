@@ -23,7 +23,7 @@ function Todolist(props) {
             </Grid>
 
             <Grid item xs={12}>
-                <TodoForm />
+                <TodoForm refreshTodos={() => dispatch(fetchTodosRequest())}/>
             </Grid>
 
             <Grid item xs={12}>

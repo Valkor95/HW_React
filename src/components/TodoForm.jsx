@@ -13,7 +13,7 @@ const validationSchema = Yup.object({
         .min(3, "Минимум 3 символа")
 });
 
-function TodoForm({ initialValues = { title: '' }, isEdit = false  }) {
+function TodoForm({ initialValues = { title: '' }, isEdit = false, refreshTodos,  }) {
     const dispatch = useDispatch();
     const navigate = useNavigate()
 
@@ -26,6 +26,7 @@ function TodoForm({ initialValues = { title: '' }, isEdit = false  }) {
                 navigate('/todolist')
             } else {
                 dispatch(createTodoRequest(values));
+                refreshTodos();
             }
             resetForm();
         },
