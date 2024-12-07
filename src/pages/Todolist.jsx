@@ -30,10 +30,12 @@ function Todolist(props) {
                 <Typography variant="h5" gutterBottom>Список задач</Typography>
             </Grid>
 
-            {todos.map(todo => (
-                <Grid item xs={12} sm={6} md={4} key={todo.id}>
-                    <TodoItem todo={todo} />
-                </Grid>
+            {todos && todos.map(todo => (
+                todo && todo.id ? (
+                        <Grid item xs={12} sm={6} md={4} key={todo.id}>
+                            <TodoItem todo={todo} />
+                        </Grid>
+                    ) : null
             ))}
         </Grid>
     );
