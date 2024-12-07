@@ -26,6 +26,7 @@ const sendImage = (filePath) => (req, res) => {
 app.get('/', sendImage('CV.jpg'));
 app.get('/swapi', sendImage('SWimg.png'));
 
+let users = []
 
 app.post('/todolist', (req, res) => {
     const newUser = { id: Date.now(), ...req.body };
