@@ -7,7 +7,6 @@ import {
 } from '../slice/todosSlice.js'
 
 import { getTodos, updateTodo, deleteTodo } from '../api/api.js'
-import {fetchImageCVRequest, fetchImageSWRequest} from "../slice/imageSlice.js";
 
 function* fetchTodosSaga() {
     try {
