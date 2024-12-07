@@ -3,17 +3,20 @@ import {useDispatch} from "react-redux";
 import {useFormik} from "formik";
 import {createTodoRequest, updateTodoRequest} from "../store/slice/todosSlice.js";
 import {Box, Button, TextField} from "@mui/material";
+import {useNavigate} from "react-router-dom";
 
 function TodoForm({ initialValues = { title: '' }, isEdit = false  }) {
     const dispatch = useDispatch();
+    const navigate = useNavigate()
 
     const formik = useFormik({
         initialValues,
         onSubmit: (values, { resetForm }) => {
             if (isEdit) {
-                dispatch(updateTodoRequest(values)); // Если редактируем задачу, отправляем update
+                dispatch(updateTodoRequest(values));
+                navigate('/todolist')
             } else {
-                dispatch(createTodoRequest(values)); // Если создаем новую задачу, отправляем create
+                dispatch(createTodoRequest(values));
             }
             resetForm();
         },
